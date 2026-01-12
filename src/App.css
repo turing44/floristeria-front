@@ -1,0 +1,24 @@
+#app {
+    height: 100vh;
+    display: grid;
+    
+    grid-template-rows: 1fr 9fr;
+
+    grid-template-areas: 
+        "app-header"
+        "app-body";
+    
+}
+
+
+
+#app-header {
+    grid-area: app-header;
+
+}
+
+#app-body {
+    grid-area: app-body;
+
+    padding: 10px;
+}

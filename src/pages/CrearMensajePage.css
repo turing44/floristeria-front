@@ -1,0 +1,67 @@
+
+#crear-mensaje-form {
+    background: var(--color-primario);
+
+    border-radius: var(--borde);
+
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#crear-mensaje-form h1 {
+  margin: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+  min-height: 44px;
+  max-height: 200px;
+}
+
+.char-counter {
+  align-self: flex-end;
+  font-size: 13px;
+  color: #666;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile first: ajustes táctiles */
+@media (max-width: 480px) {
+  #crear-mensaje-form {
+    padding: 16px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 14px;
+  }
+}
