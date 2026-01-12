@@ -1,0 +1,47 @@
+#entregas-page {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    
+    min-height: 100vh;
+
+    gap: 1rem;
+}
+
+#entregas-page aside {
+    background-color: var(--color-primario);
+    border-radius: var(--borde);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+    
+}
+
+#entregas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+
+    height: fit-content;
+    gap: 2rem;
+}
+
+
+
+@media (max-width: 768px) {
+    #entregas-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+
+    }
+
+    #entrega-page aside {
+        order: 1;
+    }
+
+    #entregas-grid {
+        order: 2;
+    }
+    
+}

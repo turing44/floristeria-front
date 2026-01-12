@@ -38,6 +38,10 @@ export default function FormEntrega({
     if (typeof onSubmit === "function") onSubmit(form);
   };
 
+  if (!initialValue) {
+    return <p>Cargando...</p>
+  }
+
   return (
     <form className="ef-form" onSubmit={handleSubmit}>
       <header className="ef-header">
@@ -46,11 +50,6 @@ export default function FormEntrega({
         </div>
 
         <div className="ef-actions ef-actions--top">
-          {typeof onCancel === "function" && (
-            <button type="button" className="ef-btn ef-btn--ghost" onClick={onCancel}>
-              Cancelar
-            </button>
-          )}
           <button type="submit" className="ef-btn ef-btn--primary">
             Guardar
           </button>

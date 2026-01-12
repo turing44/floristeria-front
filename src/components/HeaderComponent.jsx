@@ -10,7 +10,7 @@ function HeaderComponent() {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
 
-          <label className="navbar-brand">SGFAB</label> 
+          <label onClick={() => window.location.reload()} className="navbar-brand">SGFAB</label>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

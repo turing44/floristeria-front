@@ -13,6 +13,28 @@ export function mapEntregaFromDto(dto) {
         telf_cliente: dto.pedido.cliente_telf,
         observaciones: dto.pedido.observaciones ?? null,
         precio: dto.pedido.precio,
+        producto: dto.pedido.producto
 
+    }
+}
+
+
+export function mapEntregaToDto(entrega) {
+    return {
+        codigo_postal: entrega.codigo_postal,
+        destinatario_nombre: entrega.destinatario,
+        destinatario_telf: entrega.telf_destinatario,
+        direccion: entrega.direccion,
+        fecha_entrega: entrega.fecha_entrega,
+        fuente: entrega.fuente ?? null,
+        horario: entrega.horario,
+        mensaje_dedicatoria: entrega.mensaje ?? null,
+        pedido: {
+            id: entrega.id,
+            cliente_nombre: entrega.cliente,
+            cliente_telf: entrega.telf_cliente,
+            observaciones: entrega.observaciones ?? null,
+            precio: entrega.precio
+        }
     }
 }

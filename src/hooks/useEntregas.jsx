@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { listEntregas } from "../api/services/entregasApi";
+import { deleteEntrega, listEntregas } from "../api/services/entregasApi";
 
 
 export function useEntregas({sort, dir}) {
@@ -13,7 +13,12 @@ export function useEntregas({sort, dir}) {
         refetch()
     }, [sort, dir])
 
-    return { entregas }
-    
 
+    function remove(id) {
+        return deleteEntrega(id)
+    }
+
+
+    return { entregas, remove }
+    
 }

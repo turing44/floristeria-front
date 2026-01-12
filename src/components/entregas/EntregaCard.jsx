@@ -2,7 +2,7 @@ import React from "react";
 import "./EntregaCard.css";
 import Swal from "sweetalert2";
 
-function EntregaCard({ entrega }) {
+function EntregaCard({ entrega, handleEditar, handleArchivar, handleImprimir }) {
   const masInfo = (e) => {
     Swal.fire({
 
@@ -76,6 +76,7 @@ function EntregaCard({ entrega }) {
           className="btn btn-warning"
           aria-label="Editar"
           type="button"
+          onClick={() => handleEditar(entrega.id)}
         >
           <i className="fa-solid fa-pen-to-square"></i>
         </button>
@@ -84,9 +85,21 @@ function EntregaCard({ entrega }) {
           className="btn btn-success"
           aria-label="Imprimir"
           type="button"
+          onClick={() => handleImprimir(entrega.id)}
         >
           <i className="fa-solid fa-print"></i>
         </button>
+        
+        <button
+          className="btn btn-success"
+          aria-label="Imprimir"
+          type="button"
+          onClick={() => handleImprimir(entrega.id)}
+        >
+          Confirmar
+        </button>
+
+
       </div>
     </div>
   );

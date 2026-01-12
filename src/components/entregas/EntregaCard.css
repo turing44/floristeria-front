@@ -75,27 +75,15 @@
 
 /* Acciones */
 .entrega__actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
   gap: 10px;
   padding: 12px 16px 16px 16px;
   border-top: 1px solid var(--card-border);
-  align-items: center;
+
 }
 
-/* Botones: usted usa Bootstrap classes, esto solo los “pulirá” */
-.entrega__actions .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 40px;
-  border-radius: 10px;
-}
 
-.entrega__actions .btn i {
-  font-size: 18px;
-  line-height: 1;
-}
 
 .entrega__actions .btn:focus-visible {
   outline: 3px solid rgba(59, 130, 246, 0.45);
@@ -120,8 +108,5 @@
   .entrega__header strong:nth-child(2) { grid-area: horario; }
   .entrega__header strong:nth-child(3) { grid-area: fecha; justify-self: end; }
 
-  .entrega__actions .btn {
-    width: 42px;
-    height: 38px;
-  }
+
 }
