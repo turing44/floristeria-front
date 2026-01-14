@@ -48,3 +48,4 @@ export async function updateEntrega(id, entrega) {
 export async function deleteEntrega(id) {
     return await httpDelete(RUTA_ENTREGAS + "/" + id)
 }
+

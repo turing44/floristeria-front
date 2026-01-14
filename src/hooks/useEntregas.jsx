@@ -15,10 +15,10 @@ export function useEntregas({sort, dir}) {
 
 
     function remove(id) {
-        return deleteEntrega(id)
+        return deleteEntrega(id).then(refetch)
     }
 
 
-    return { entregas, remove }
+    return { entregas, remove, refetch }
     
 }

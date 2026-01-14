@@ -2,8 +2,9 @@
  * ef- siginifica Entrega Form
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./FormEntrega.css";
+import { getEntrega } from "../../api/services/entregasApi";
 
 export const defaultEntrega = {
   cliente: "",
@@ -22,10 +23,13 @@ export const defaultEntrega = {
 
 export default function FormEntrega({
   initialValue = defaultEntrega,
+  editId = null,
+  modo,
   onSubmit,
   onCancel,
   title = "Entrega",
-}) {
+}) 
+{
 
   const [form, setForm] = useState(initialValue);
 
@@ -35,11 +39,21 @@ export default function FormEntrega({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (typeof onSubmit === "function") onSubmit(form);
+    onSubmit(form)
   };
 
+
+  useEffect(() => {
+    if (modo === "crear") {
+      setForm(initialValue)
+    } else {
+      getEntrega(editId).then(setForm)
+    }
+  }, [initialValue])
+  
+
   if (!initialValue) {
-    return <p>Cargando...</p>
+    return <p>Cargando formulario...</p>
   }
 
   return (

@@ -1,6 +1,10 @@
 export function mapEntregaFromDto(dto) {
-    return {
-        id: String(dto.pedido.id),
+    //console.log(dto)
+
+    const entregaMapeada = 
+
+    {
+        id: (dto.id),
         codigo_postal: dto.codigo_postal,
         destinatario: dto.destinatario_nombre,
         telf_destinatario: dto.destinatario_telf,
@@ -16,6 +20,8 @@ export function mapEntregaFromDto(dto) {
         producto: dto.pedido.producto
 
     }
+    console.log(entregaMapeada)
+    return entregaMapeada
 }
 
 

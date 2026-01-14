@@ -92,9 +92,9 @@ function EntregaCard({ entrega, handleEditar, handleArchivar, handleImprimir }) 
         
         <button
           className="btn btn-success"
-          aria-label="Imprimir"
+          aria-label="Archivar"
           type="button"
-          onClick={() => handleImprimir(entrega.id)}
+          onClick={() => handleArchivar(entrega.id)}
         >
           Confirmar
         </button>

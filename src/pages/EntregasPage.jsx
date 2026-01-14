@@ -2,87 +2,84 @@ import React, { useEffect, useState } from 'react'
 import { useEntregas } from '../hooks/useEntregas'
 import EntregaCard from './../components/entregas/EntregaCard'
 import "./EntregaPage.css"
-import FormEntrega from '../components/entregas/FormEntrega'
-import { createEntrega, getEntrega } from '../api/services/entregasApi'
+import FormEntrega, { defaultEntrega } from '../components/entregas/FormEntrega'
+import { createEntrega, deleteEntrega, getEntrega } from '../api/services/entregasApi'
+import EntregasSidebar from '../components/entregas/EntregasSidebar'
+import Swal from 'sweetalert2'
+import { getPdf } from '../api/services/imprimirApi'
 
 function EntregasPage() {
 
     const [sort, setSort] = useState("fecha")
     const [dir, setDir] = useState("desc")
     const [editId, setEditId] = useState(null)
-    const [entregaEditando, setEntregaEditando] = useState(null)
+    
+    // vista o form 
+    const [modo, setModo] = useState("vista")
 
     const { entregas } = useEntregas({ sort, dir })
 
     const enviarFormulario = async (formulario) => {
         await createEntrega(formulario)
         setEditId(null)
-        setEntregaEditando(null)
+        setModo("vista")
     }
 
-    useEffect(() => {
-        if (editId && editId !== 'new') {
-            getEntrega(editId).then(res => {
-                setEntregaEditando(res)
-            })
-        }
-    }, [editId])
+    const handleEditarEntrega = (id) => {
+        setEditId(id)
+        setModo("form")
+    }
 
-    if (editId !== null) {
+    const handleArchivarEntrega = (id) => {
+        deleteEntrega(id)
+        .then(Swal.fire({
+            icon: "success",
+            title: "Entrega archivada"
+        }))
+        .catch(Swal.fire({
+            icon: "error",
+            title: "Error al archivar la entrega"
+        }))
+    }
 
-        if (editId !== 'new' && !entregaEditando) {
-            return <p>Cargando...</p>
-        }
+    const handleImprimir = async (id) => {
+        const pdfBlob = await getPdf(id)
+        const url = URL.createObjectURL(pdfBlob)
+        window.open(url)
+        window.print()
+    }
 
+    if (modo === "form") {
         return (
-            <FormEntrega
+            <FormEntrega 
+                modo={modo}
+                editId={editId}
                 onSubmit={enviarFormulario}
-                initialValue={editId === 'new' ? null : entregaEditando}
-                onCancel={() => {
-                    setEditId(null)
-                    setEntregaEditando(null)
-                }}
             />
         )
     }
 
     return (
+
         <div id='entregas-page'>
-            <aside>
-                <select
-                    value={sort}
-                    onChange={e => setSort(e.target.value)}
-                    id="sort"
-                >
-                    <option value="fecha">Fecha</option>
-                    <option value="codigo-postal">Codigo Postal</option>
-                </select>
-
-                <select
-                    value={dir}
-                    onChange={e => setDir(e.target.value)}
-                    id="dir"
-                >
-                    <option value="desc">Descendente</option>
-                    <option value="asc">Ascendente</option>
-                </select>
-
-                <button
-                    onClick={() => {
-                        setEditId('new')
-                        setEntregaEditando(null)
-                    }}
-                >
-                    Crear Nuevo
-                </button>
-            </aside>
+            
+            <EntregasSidebar
+                dir={dir}
+                setDir={setDir}
+                sort={sort}
+                setSort={setSort}
+                setModo={setModo}
+            />
 
             <div id='entregas-grid'>
                 {entregas.map(entrega => (
                     <EntregaCard
                         key={entrega.id}
                         entrega={entrega}
-                        handleEditar={setEditId}
+                        setModo={setModo}
+                        handleEditar={handleEditarEntrega}
+                        handleArchivar={handleArchivarEntrega}
+                        handleImprimir={handleImprimir}
                     />
                 ))}
             </div>
