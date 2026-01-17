@@ -26,26 +26,41 @@ export async function getEntrega(id) {
 
 export async function createEntrega(entrega) {
 
-    const dto = mapEntregaToDto(entrega)
-
-    const response = await httpPost(RUTA_ENTREGAS, { body: dto })
-
-    return mapEntregaFromDto(response)
+    try {
+        
+        const dto = mapEntregaToDto(entrega)
+        const response = await httpPost(RUTA_ENTREGAS, { body: dto })
     
+        return mapEntregaFromDto(response)
+        
+    } catch (error) {
+        console.log(error)    
+    }
 }
 
 export async function updateEntrega(id, entrega) {
 
-    const dto = mapEntregaToDto(entrega)
-
-    const response = await httpPut(RUTA_ENTREGAS + "/" + id, { body: dto })
-
-    return mapEntregaFromDto(response)
+    try {
+        const dto = mapEntregaToDto(entrega)
+        const response = await httpPut(RUTA_ENTREGAS + "/" + id, { body: dto })
     
+        return mapEntregaFromDto(response)
+    } catch (error) {
+        console.log(error);
+        
+    }
 }
 
 
 export async function deleteEntrega(id) {
     return await httpDelete(RUTA_ENTREGAS + "/" + id)
 }
+
+export async function getEntregasArchivadas(id) {
+    return await httpGet(RUTA_ENTREGAS + "/archivadas/" + id)
+}   
+
+export async function getEntregasArchivadas(id) {
+    return await httpGet(RUTA_ENTREGAS + "/archivadas/" + id)
+}   
 

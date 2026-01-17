@@ -3,10 +3,9 @@ import { useEntregas } from '../hooks/useEntregas'
 import EntregaCard from './../components/entregas/EntregaCard'
 import "./EntregaPage.css"
 import FormEntrega, { defaultEntrega } from '../components/entregas/FormEntrega'
-import { createEntrega, deleteEntrega, getEntrega } from '../api/services/entregasApi'
+import { createEntrega, deleteEntrega, getEntrega, updateEntrega } from '../api/services/entregasApi'
 import EntregasSidebar from '../components/entregas/EntregasSidebar'
 import Swal from 'sweetalert2'
-import { getPdf } from '../api/services/imprimirApi'
 
 function EntregasPage() {
 
@@ -20,9 +19,23 @@ function EntregasPage() {
     const { entregas } = useEntregas({ sort, dir })
 
     const enviarFormulario = async (formulario) => {
-        await createEntrega(formulario)
-        setEditId(null)
-        setModo("vista")
+
+        try {
+            if (editId !== null) {
+                await updateEntrega(editId, formulario)
+            } else {
+                await createEntrega(formulario)
+            }
+
+            setEditId(null)
+            setModo("vista")
+
+        } catch (error) {   
+            console.log("Error al enviar el formulario:", error)
+        }
+
+
+        
     }
 
     const handleEditarEntrega = (id) => {
@@ -32,21 +45,20 @@ function EntregasPage() {
 
     const handleArchivarEntrega = (id) => {
         deleteEntrega(id)
-        .then(Swal.fire({
+        .then(res => Swal.fire({
             icon: "success",
             title: "Entrega archivada"
         }))
-        .catch(Swal.fire({
+        .catch(err => Swal.fire({
             icon: "error",
             title: "Error al archivar la entrega"
         }))
     }
 
     const handleImprimir = async (id) => {
-        const pdfBlob = await getPdf(id)
-        const url = URL.createObjectURL(pdfBlob)
+        const url = await getEntregaPdf(id)
         window.open(url)
-        window.print()
+
     }
 
     if (modo === "form") {
