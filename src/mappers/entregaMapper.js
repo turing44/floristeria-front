@@ -4,20 +4,20 @@ export function mapEntregaFromDto(dto) {
     const entregaMapeada = 
 
     {
-        id: (dto.id),
-        codigo_postal: dto.codigo_postal,
-        destinatario: dto.destinatario_nombre,
-        telf_destinatario: dto.destinatario_telf,
-        direccion: dto.direccion,
-        fecha_entrega: dto.fecha_entrega,
-        fuente: dto.fuente ?? null,
-        horario: dto.horario,
-        mensaje: dto.mensaje_dedicatoria ?? null,
+        id: dto.pedido_id,
+        fuente: dto.pedido.fuente ?? null,
+        producto: dto.pedido.producto,
+        precio: dto.pedido.precio,
+        fecha_entrega: dto.fecha,
         cliente: dto.pedido.cliente_nombre,
         telf_cliente: dto.pedido.cliente_telf,
+        horario: dto.pedido.horario,
         observaciones: dto.pedido.observaciones ?? null,
-        precio: dto.pedido.precio,
-        producto: dto.pedido.producto
+        destinatario: dto.nombre_mensaje,
+        mensaje: dto.texto_mensaje ?? null,
+        direccion: dto.direccion,
+        telf_destinatario: dto.destinatario_telf,
+        codigo_postal: dto.codigo_postal,
 
     }
     console.log(entregaMapeada)
@@ -27,20 +27,20 @@ export function mapEntregaFromDto(dto) {
 
 export function mapEntregaToDto(entrega) {
     return {
-        codigo_postal: entrega.codigo_postal,
-        destinatario_nombre: entrega.destinatario,
-        destinatario_telf: entrega.telf_destinatario,
-        direccion: entrega.direccion,
-        fecha_entrega: entrega.fecha_entrega,
+        id: entrega.id,
         fuente: entrega.fuente ?? null,
+        producto: entrega.producto,
+        precio: entrega.precio,
+        fecha: entrega.fecha_entrega,
+        nombre_mensaje: entrega.destinatario,
+        texto_mensaje: entrega.mensaje ?? null,
+        cliente_nombre: entrega.cliente,
+        cliente_telf: entrega.telf_cliente,
         horario: entrega.horario,
-        mensaje_dedicatoria: entrega.mensaje ?? null,
-        pedido: {
-            id: entrega.id,
-            cliente_nombre: entrega.cliente,
-            cliente_telf: entrega.telf_cliente,
-            observaciones: entrega.observaciones ?? null,
-            precio: entrega.precio
-        }
+        observaciones: entrega.observaciones ?? null,
+        
+        direccion: entrega.direccion,
+        destinatario_telf: entrega.telf_destinatario,
+        codigo_postal: entrega.codigo_postal,
     }
 }
