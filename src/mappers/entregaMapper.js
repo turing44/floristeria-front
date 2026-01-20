@@ -1,27 +1,20 @@
 export function mapEntregaFromDto(dto) {
-    //console.log(dto)
-
-    const entregaMapeada = 
-
-    {
-        id: dto.pedido_id,
-        fuente: dto.pedido.fuente ?? null,
-        producto: dto.pedido.producto,
-        precio: dto.pedido.precio,
-        fecha_entrega: dto.fecha,
-        cliente: dto.pedido.cliente_nombre,
-        telf_cliente: dto.pedido.cliente_telf,
-        horario: dto.pedido.horario,
-        observaciones: dto.pedido.observaciones ?? null,
-        destinatario: dto.pedido.nombre_mensaje,
-        mensaje: dto.pedido.texto_mensaje ?? null,
-        direccion: dto.direccion,
-        telf_destinatario: dto.destinatario_telf,
-        codigo_postal: dto.codigo_postal,
-
-    }
-    console.log(entregaMapeada)
-    return entregaMapeada
+  return {
+    id: dto.pedido_id ?? "",
+    fuente: dto.pedido?.fuente ?? "",
+    producto: dto.pedido?.producto ?? "",
+    precio: dto.pedido?.precio ?? "",
+    fecha_entrega: dto.pedido?.fecha ?? "",
+    cliente: dto.pedido?.cliente_nombre ?? "",
+    telf_cliente: dto.pedido?.cliente_telf ?? "",
+    horario: dto.pedido?.horario ?? "INDIFERENTE",
+    observaciones: dto.pedido?.observaciones ?? "",
+    destinatario: dto.pedido?.nombre_mensaje ?? "",
+    mensaje: dto.pedido?.texto_mensaje ?? "",
+    direccion: dto.direccion ?? "",
+    telf_destinatario: dto.destinatario_telf ?? "",
+    codigo_postal: dto.codigo_postal ?? "",
+  };
 }
 
 

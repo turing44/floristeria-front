@@ -16,13 +16,18 @@ async function request(path, {method = "GET", body} = {}) {
 
     })
 
+    console.log(response);
+    
+
     if (!response.ok) {
         const error = new Error("HTTP_ERROR");
         error.status = response.status;
+        error.errors = response.errors;
         throw error;
     }
 
     if (response.status === 204) return null  
+
 
     return response.json()
     

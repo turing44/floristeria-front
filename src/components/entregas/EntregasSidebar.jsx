@@ -1,7 +1,7 @@
 import React from 'react'
 import "./EntregasSidebar.css"
 
-function EntregasSidebar({sort, setSort, dir, setDir, setModo}) {
+function EntregasSidebar({sort, setSort, setModo}) {
   return (
     <aside id='entregas-aside'>
       <select
@@ -9,22 +9,14 @@ function EntregasSidebar({sort, setSort, dir, setDir, setModo}) {
           onChange={e => setSort(e.target.value)}
           id="sort"
       >
-          <option value="fecha">Fecha</option>
+          <option value="fecha_desc">Fecha descendente</option>
+          <option value="fecha_asc">Fecha ascendente</option>
           <option value="codigo-postal">Codigo Postal</option>
-      </select>
-
-      <select
-          value={dir}
-          onChange={e => setDir(e.target.value)}
-          id="dir"
-      >
-          <option value="desc">Descendente</option>
-          <option value="asc">Ascendente</option>
       </select>
 
       <button
           onClick={() => {
-              setModo("form")
+              setModo("crear")
           }}
       >
           Crear Nuevo
