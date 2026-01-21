@@ -1,40 +1,43 @@
-export function mapReservaFromDto(dto) {
 
-    const reservaMappeada =
-    {
-        id: dto.pedido.id,
+export function mapReservaFromDto(dto) {
+    const reserva = {
+        id: dto.pedido_id,
         fuente: dto.pedido.fuente ?? null,
         producto: dto.pedido.producto,
         precio: dto.pedido.precio,
-        fecha_entrega: dto.pedido.fecha_entrega,
-        cliente: dto.pedido.cliente_nombre,
-        telf_cliente: dto.pedido.cliente_telf,
+        fecha: dto.fecha,
+        cliente_nombre: dto.pedido.cliente_nombre,
+        cliente_telf: dto.pedido.cliente_telf,
         horario: dto.pedido.horario,
         observaciones: dto.pedido.observaciones ?? null,
         nombre_mensaje: dto.pedido.nombre_mensaje,
-        texto_mensaje: dto.pedido.texto_mensaje,
-        dinero_a_cuenta: dto.dinero_a_cuenta,
-        estado_pago: dto.estado_pago
+        texto_mensaje: dto.pedido.texto_mensaje ?? null,
+
+        dinero_dejado_a_cuenta: dto.dinero_dejado_a_cuenta ?? null,
+        estado_pago: dto.estado_pago,
     }
-    console.log(reservaMappeada)
-    return reservaMappeada
+
+    return reserva
 }
 
-export function mapReservaToDto(reserva) {
-        return {
-            estado_pago: reserva.estado_pago,
-            dinero_a_cuenta: reserva.dinero_a_cuenta,
-            pedido: {
-                id: reserva.id,
-                fuente: reserva.fuente ?? null,
-                producto: reserva.producto,
-                precio: reserva.precio,
-                fecha_entrega: reserva.fecha_entrega,
-                cliente_telf: reserva.telf_cliente,
-                horario: reserva.horario,
-                observaciones: reserva.observaciones ?? null,
-                nombre_mensaje: reserva.nombre_mensaje,
-                texto_mensaje: reserva.texto_mensaje
-            }
-        }
-}
+
+export function mapReservaToDto(reserva) {  
+    const dto = {
+        id: reserva.id,
+        fuente: reserva.fuente ?? null,
+        producto: reserva.producto,
+        precio: reserva.precio,
+        fecha: reserva.fecha,
+        nombre_mensaje: reserva.nombre_mensaje,
+        texto_mensaje: reserva.texto_mensaje ?? null,
+        cliente_nombre: reserva.cliente_nombre,     
+        cliente_telf: reserva.cliente_telf,
+        horario: reserva.horario,
+        observaciones: reserva.observaciones ?? null,
+        
+        dinero_dejado_a_cuenta: reserva.dinero_dejado_a_cuenta ?? null,
+        estado_pago: reserva.estado_pago,
+    }
+
+    return dto
+}   

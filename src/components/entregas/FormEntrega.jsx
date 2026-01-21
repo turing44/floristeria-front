@@ -18,7 +18,8 @@ export const defaultEntrega = {
   fecha_entrega: "",
   horario: "INDIFERENTE",
   observaciones: "",
-  mensaje: null,
+  mensaje: "",
+  fuente: "local"
 };
 
 export default function FormEntrega({
@@ -39,6 +40,8 @@ export default function FormEntrega({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.warn(form);
+    
     onSubmit(form)
   };
 
@@ -49,7 +52,7 @@ export default function FormEntrega({
     } else {
       getEntrega(editId).then(setForm)
     }
-  }, [initialValue])
+  }, [initialValue, modo, editId])
   
 
   if (!initialValue) {

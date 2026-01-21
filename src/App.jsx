@@ -8,8 +8,6 @@ import ReservasPage from './pages/ReservasPage'
 import CrearMensajePage from './pages/CrearMensajePage'
 
 function App() {
-
-
   return (
     <div id='app'>
 

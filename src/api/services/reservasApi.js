@@ -1,25 +1,14 @@
-import { mapReservaFromDto, mapReservaToDto } from "../../mappers/reservaMapper";
-import { httpDelete, httpGet, httpPost, httpPut } from "../cliente";
+import { httpGet, httpPost, httpPut, httpDelete } from "../cliente"
 
-/** 
- * sort Sorted => ordenado
- * dir Direccion ascendente o descendente (asc / desc) 
- */
 
 const RUTA_RESERVAS = "/reservas"
 
-export async function listReservas({ sort = "fecha", dir = "desc" }) {
-    const dtos = await httpGet(RUTA_RESERVAS + "?" + new URLSearchParams({ sort, dir }))
-
-    const reservas = dtos.reservas.map(mapReservaFromDto)
-
-    return reservas
+export async function listReservas() {
+    return await httpGet(RUTA_RESERVAS)
 }
 
 export async function getReserva(id) {
-    const dto = await httpGet(RUTA_RESERVAS + "/" + id)
-    console.log(dto)
-    return mapReservaFromDto(dto)
+    return await httpGet(RUTA_RESERVAS + "/" + id)
 }
 
 export async function createReserva(reserva) {
@@ -43,4 +32,3 @@ export async function updateReserva(id, reserva) {
 export async function deleteReserva(id) {
     return await httpDelete(RUTA_RESERVAS + "/" + id)
 }
-

@@ -3,25 +3,41 @@ import { useEntregas } from '../hooks/useEntregas'
 import EntregaCard from './../components/entregas/EntregaCard'
 import "./EntregaPage.css"
 import FormEntrega, { defaultEntrega } from '../components/entregas/FormEntrega'
-import { createEntrega, deleteEntrega, getEntrega } from '../api/services/entregasApi'
+import { createEntrega, deleteEntrega, getEntrega, updateEntrega } from '../api/services/entregasApi'
 import EntregasSidebar from '../components/entregas/EntregasSidebar'
 import Swal from 'sweetalert2'
-import { getPdf } from '../api/services/imprimirApi'
+import { getEntregaPdf } from '../api/services/imprimirApi'
 
 function EntregasPage() {
-    const [sort, setSort] = useState("fecha")
-    const [dir, setDir] = useState("desc")
+
+    const [sort, setSort] = useState("fecha_desc")
     const [editId, setEditId] = useState(null)
     
     // vista o form 
     const [modo, setModo] = useState("vista")
 
-    const { entregas } = useEntregas({ sort, dir })
+    const { entregas, remove, refetch } = useEntregas({ sort })
 
     const enviarFormulario = async (formulario) => {
-        await createEntrega(formulario)
-        setEditId(null)
-        setModo("vista")
+
+        try {
+            if (editId !== null) {
+                await updateEntrega(editId, formulario)
+            } else {
+                await createEntrega(formulario)
+            }
+
+            setEditId(null)
+            setModo("vista")
+            refetch()
+            
+
+        } catch (error) {   
+            console.log("Error al enviar el formulario:", error)
+        }
+
+
+        
     }
 
     const handleEditarEntrega = (id) => {
@@ -30,25 +46,32 @@ function EntregasPage() {
     }
 
     const handleArchivarEntrega = (id) => {
-        deleteEntrega(id)
-        .then(Swal.fire({
+        remove(id)
+        .then(res => {
+            Swal.fire({
             icon: "success",
             title: "Entrega archivada"
-        }))
-        .catch(Swal.fire({
+            })
+        })
+        .catch(err => Swal.fire({
             icon: "error",
             title: "Error al archivar la entrega"
         }))
     }
 
     const handleImprimir = async (id) => {
-        const pdfBlob = await getPdf(id)
-        const url = URL.createObjectURL(pdfBlob)
-        window.open(url)
-        window.print()
+        try {
+            const blob = await getEntregaPdf(id)
+            const url = URL.createObjectURL(blob)
+            window.open(url)
+        } catch (error) {
+            console.log(error);
+            
+        }
+
     }
 
-    if (modo === "form") {
+    if (modo === "form" || modo === "crear") {
         return (
             <FormEntrega 
                 modo={modo}
@@ -63,8 +86,6 @@ function EntregasPage() {
         <div id='entregas-page'>
             
             <EntregasSidebar
-                dir={dir}
-                setDir={setDir}
                 sort={sort}
                 setSort={setSort}
                 setModo={setModo}
