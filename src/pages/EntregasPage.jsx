@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 import { getPdf } from '../api/services/imprimirApi'
 
 function EntregasPage() {
-
     const [sort, setSort] = useState("fecha")
     const [dir, setDir] = useState("desc")
     const [editId, setEditId] = useState(null)

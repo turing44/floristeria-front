@@ -1,5 +1,5 @@
 import React from 'react'
-import "./EntregasSidebar.css"
+import "./css/EntregasSidebar.css"
 
 function EntregasSidebar({sort, setSort, dir, setDir, setModo}) {
   return (

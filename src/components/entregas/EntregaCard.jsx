@@ -1,5 +1,5 @@
 import React from "react";
-import "./EntregaCard.css";
+import "./css/EntregaCard.css";
 import Swal from "sweetalert2";
 
 function EntregaCard({ entrega, handleEditar, handleArchivar, handleImprimir }) {
@@ -28,13 +28,15 @@ function EntregaCard({ entrega, handleEditar, handleArchivar, handleImprimir }) 
     `${entrega.direccion}, ${entrega.codigo_postal}`
   );
 
+  const fecha = new Date(entrega.fecha_entrega);
+  const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
+
   return (
-    <div className={`entrega ${entrega.estado === 'PENDIENTE' ? 'pendiente': 'completado'}`}>
-      
+    <div className="entrega">      
       <div className="entrega__header">
         <strong>{entrega.id}</strong>
         <strong>{entrega.horario}</strong>
-        <strong>{entrega.fecha_entrega}</strong>
+        <strong>{fechaFormateada}</strong>
       </div>
 
       <div className="entrega__content">

@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect } from "react";
-import "./FormEntrega.css";
+import "./css/FormEntrega.css";
 import { getEntrega } from "../../api/services/entregasApi";
 
 export const defaultEntrega = {
