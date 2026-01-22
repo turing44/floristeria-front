@@ -16,7 +16,7 @@ export function mapPedidoFromDto(dto) {
     return pedido
 }
 
-export function mapPedidoToDto(pedido) {
+export function mapPedidoToDto(entrega) {
     const dto = {
         id: entrega.id,
         fuente: entrega.fuente ?? null,
