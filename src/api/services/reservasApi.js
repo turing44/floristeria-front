@@ -1,10 +1,17 @@
+import { mapReservaFromDto } from "../../mappers/reservaMapper";
 import { httpGet, httpPost, httpPut, httpDelete } from "../cliente"
 
 
 const RUTA_RESERVAS = "/reservas"
 
 export async function listReservas() {
-    return await httpGet(RUTA_RESERVAS)
+    const response = await httpGet(RUTA_RESERVAS) 
+    console.log(response);
+    
+    const reservasMapeadas = response.reservas.map(mapReservaFromDto)
+    console.log(reservasMapeadas);
+    
+    return reservasMapeadas
 }
 
 export async function getReserva(id) {

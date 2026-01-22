@@ -1,5 +1,5 @@
 import React from 'react'
-import "./css/EntregasSideBar.css"
+import "./css/EntregasSidebar.css"
 import { useState } from 'react'
 
 function ReservasSideBar({ setModo }) {

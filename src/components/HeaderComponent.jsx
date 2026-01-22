@@ -31,6 +31,13 @@ function HeaderComponent() {
                 <button className='btn' onClick={() => navigate("/crear-mensaje")}>Crear Mensaje</button>
               </li>
 
+              <li className="nav-item">
+                <button className='btn' onClick={() => navigate("/entregas-archivadas")}>Entregas Archivadas</button>
+              </li>
+
+              <li className="nav-item">
+                <button className='btn' onClick={() => navigate("/reservas-archivadas")}>Reservas Archivadas</button>
+              </li>
             </ul>
             
           </div>

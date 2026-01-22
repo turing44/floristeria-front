@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { listReservas } from "../api/services/reservasApi";
 
 
-export function useReservas({ sort, dir }) {
+export function useReservas({ sort }) {
     const [reservas, setReservas] = useState([])
 
     function refetch() {
-        return listReservas({ sort, dir }).then(setReservas)
+        return listReservas(sort).then(setReservas)
     }
 
     useEffect(() => {
+        
+        
         refetch()
-    }, [sort, dir])
+        console.log(reservas);
+        
+    }, [sort])
 
 
     function remove(id) {
