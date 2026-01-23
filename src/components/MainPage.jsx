@@ -27,7 +27,8 @@ function MainPage({
             if (editId !== null) {
                 await update(editId, formulario)
             } else {
-                await create(formulario)
+                const item = await create(formulario)
+                handleMostrarPdf(item.id)
             }
             setEditId(null)
             setModo("vista")
