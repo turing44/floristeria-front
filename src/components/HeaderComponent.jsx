@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function HeaderComponent() {
 
@@ -15,31 +15,66 @@ function HeaderComponent() {
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              
+
               <li className="nav-item">
-                <button className='btn' onClick={() => navigate("/reservas")}>Reservas</button>
-              </li>
-              
-              <li className="nav-item">
-                <button className='btn' onClick={() => navigate("/")}>Entregas</button>
-              </li>
-              
-              <li className="nav-item">
-                <button className='btn' onClick={() => navigate("/crear-mensaje")}>Crear Mensaje</button>
+                <NavLink
+                  to="/reservas"
+                  className={({ isActive }) =>
+                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
+                  }
+                >
+                  Reservas
+                </NavLink>
               </li>
 
               <li className="nav-item">
-                <button className='btn' onClick={() => navigate("/entregas-archivadas")}>Entregas Archivadas</button>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
+                  }
+                >
+                  Entregas
+                </NavLink>
               </li>
 
               <li className="nav-item">
-                <button className='btn' onClick={() => navigate("/reservas-archivadas")}>Reservas Archivadas</button>
+                <NavLink
+                  to="/crear-mensaje"
+                  className={({ isActive }) =>
+                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
+                  }
+                >
+                  Crear Mensaje
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  to="/entregas-archivadas"
+                  className={({ isActive }) =>
+                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
+                  }
+                >
+                  Entregas Archivadas
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  to="/reservas-archivadas"
+                  className={({ isActive }) =>
+                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
+                  }
+                >
+                  Reservas Archivadas
+                </NavLink>
               </li>
             </ul>
-            
+
           </div>
         </div>
       </nav>
