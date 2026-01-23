@@ -4,8 +4,8 @@ import Swal from 'sweetalert2'
 import { getReservaPdf } from '../api/services/imprimirApi'
 import { createReserva, deleteReserva, updateReserva } from '../api/services/reservasApi'
 import { useReservas } from '../hooks/useReservas'
-import FormReserva from '../components/reservas/FormReserva'
-import MainPage from '../components/genericos/MainPage'
+import FormReserva from '../components/FormReserva'
+import MainPage from '../components/MainPage'
 
 function ReservasPage() {
     const handleMasInfo = (reserva) => {

@@ -4,8 +4,8 @@
 
 import { useState, useEffect } from "react";
 import "@/styles/FormPedido.css";
-import { getEntrega } from "../../api/services/entregasApi";
-import FormPedidos from "../genericos/FormPedidos";
+import { getEntrega } from "../api/services/entregasApi";
+import FormPedidos from "./FormPedidos";
 
 export const defaultEntrega = {
   cliente: "",
@@ -50,7 +50,7 @@ export default function FormEntrega({
           if (!editId) {
               setForm(initialValue);
           } else {
-              getReserva(editId).then(setForm);
+              getEntrega(editId).then(setForm);
           }
       }, [initialValue, editId])
 

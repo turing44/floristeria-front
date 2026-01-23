@@ -1,9 +1,0 @@
-#entregas-aside {
-    background-color: var(--color-primario);
-    border-radius: var(--borde);
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-}

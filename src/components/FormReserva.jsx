@@ -4,8 +4,8 @@
 
 import { useState, useEffect } from "react";
 import "@/styles/FormPedido.css";
-import { getReserva } from "../../api/services/reservasApi";
-import FormPedidos from "../genericos/FormPedidos";
+import { getReserva } from "../api/services/reservasApi";
+import FormPedidos from "./FormPedidos";
 
 
 export const defaultReserva = {
