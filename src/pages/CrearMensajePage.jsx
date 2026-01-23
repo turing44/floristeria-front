@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CrearMensajePage.css";
+import { obtenerMensajePdf } from "../api/services/mensajeApi";
 
 function CrearMensajePage() {
   const MAX_CHARS_NOMBRE = 30;
@@ -20,9 +21,20 @@ function CrearMensajePage() {
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  };
+
+    try {
+      
+      const blob = await obtenerMensajePdf(nombre, mensaje)
+  
+      const url = URL.createObjectURL(blob)
+  
+      window.open(url);
+    } catch (error) {
+      console.error("Error al obtener el PDF del mensaje:", error);
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit} id="crear-mensaje-form">
