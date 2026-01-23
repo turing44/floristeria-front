@@ -4,10 +4,10 @@ import "@/styles/PedidoCard.css";
 function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo }) {
   const fecha = new Date(pedido.fecha_entrega);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
-  const pedidoClass = pedido.observaciones? "pedido con_observaciones" : "pedido";
-  
+  const pedidoClass = pedido.observaciones ? "pedido con_observaciones" : "pedido";
+  const reservaPagada = pedido.estado_pago === "PAGADO" ? "PAGADO" : "";
   return (
-    <div className={pedidoClass}>      
+    <div className={pedidoClass}>
       <div className="pedido__header">
         <strong>{pedido.id}</strong>
         <strong>{pedido.horario}</strong>
@@ -22,8 +22,11 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         <p>
           Teléfono cliente:{" "}
           <a href={`tel:${pedido.telf_cliente}`}>
-            {pedido.telf_cliente}git 
+            {pedido.telf_cliente}git
           </a>
+        </p>
+        <p>
+          <strong>{reservaPagada}</strong>
         </p>
       </div>
 
@@ -54,7 +57,7 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         >
           <i className="fa-solid fa-print"></i>
         </button>
-        
+
         <button
           className="btn btn-success"
           aria-label="Archivar"

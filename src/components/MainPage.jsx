@@ -18,6 +18,7 @@ function MainPage({
     const [modo, setModo] = useState("vista")
     //Necesito hacer esto porque la API devuelve un objeto y necesito decirle lo que tiene que destructurar de forma personalizada (entrega o reserva)
     const hookItems = useHook({sort});
+    //Aquí se usa el objeto que viene del hook para destucturar lo que necesitamos, si se usan dos hook da error porque utiliza el último usado.
     const { remove, refetch } = hookItems;
     const items = hookItems[tipo] || []
 
