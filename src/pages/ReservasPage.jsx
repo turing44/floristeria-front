@@ -5,13 +5,12 @@ import { getReservaPdf } from '../api/services/imprimirApi'
 import { createReserva, deleteReserva, updateReserva } from '../api/services/reservasApi'
 import { useReservas } from '../hooks/useReservas'
 import ReservasSideBar from '../components/reservas/ReservasSideBar'
-import ReservaCard from '../components/reservas/ReservasCard'
 import FormReserva from '../components/reservas/FormReserva'
+import PedidoCard from '../components/genericos/PedidoCard'
 
 function ReservasPage() {
     const [editId, setEditId] = useState(null)
     const [sort, setSort] = useState("fecha")
-
     // vista o form 
     const [modo, setModo] = useState("vista")
 
@@ -28,6 +27,24 @@ function ReservasPage() {
         }
         setEditId(null)
         setModo("vista")
+    }
+
+    const handleMasInfo = (reserva) => {
+        Swal.fire({
+            title: reserva.id,
+            html: `
+        <p>${reserva.precio} €</p> 
+        <br />
+        <p>Cliente: ${reserva.cliente}</p>
+        <p>Cliente Telf: <a href="tel:${reserva.telf_cliente}">${reserva.telf_cliente}</a></p> 
+        <br />
+        <p>Destinatario: ${reserva.nombre_mensaje}</p>
+        <p>Estado Pago: ${reserva.estado_pago}</p>
+        <p>Dinero a cuenta: ${reserva.dinero_a_cuenta} €</p>
+        ${reserva.texto_mensaje !== null ? "<br /><p>Mensaje: " + reserva.texto_mensaje + " </p>" : ""}
+        ${reserva.observaciones !== null ? "<br /><p>Observaciones: " + reserva.observaciones + " </p>" : ""}
+      `,
+        });
     }
 
     const handleEditarReserva = (id) => {
@@ -47,12 +64,12 @@ function ReservasPage() {
             }))
     }
 
-        const handleImprimir = async (id) => {
-            const pdfBlob = await getPdf(id)
-            const url = URL.createObjectURL(pdfBlob)
-            window.open(url)
-            window.print()
-        }
+    const handleImprimir = async (id) => {
+        const pdfBlob = await getReservaPdf(id)
+        const url = URL.createObjectURL(pdfBlob)
+        window.open(url)
+        window.print()
+    }
 
     if (modo === "form") {
         return (
@@ -74,13 +91,13 @@ function ReservasPage() {
 
             <div id='entregas-grid'>
                 {reservas.map(reserva => (
-                    <ReservaCard
+                    <PedidoCard
                         key={reserva.id}
-                        reserva={reserva}
-                        setModo={setModo}
+                        pedido={reserva}
                         handleEditar={handleEditarReserva}
                         handleArchivar={handleArchivarReserva}
                         handleImprimir={handleImprimir}
+                        handleMasInfo={handleMasInfo}
                     />
                 ))}
             </div>
