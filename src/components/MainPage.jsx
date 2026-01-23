@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import "@/styles/MainPage.css"
 import Swal from 'sweetalert2'
-import PedidoCard from '@/components/genericos/PedidoCard'
-import SideBar from '@/components/genericos/SideBar'
+import PedidoCard from '@/components/PedidoCard'
+import SideBar from '@/components/SideBar'
 
 function MainPage({
     useHook,
@@ -16,9 +16,9 @@ function MainPage({
     const [editId, setEditId] = useState(null)
     const [sort, setSort] = useState("fecha")
     const [modo, setModo] = useState("vista")
-    const { remove, refetch } = useHook({ sort });
     //Necesito hacer esto porque la API devuelve un objeto y necesito decirle lo que tiene que destructurar de forma personalizada (entrega o reserva)
     const hookItems = useHook({sort});
+    const { remove, refetch } = hookItems;
     const items = hookItems[tipo] || []
 
     const enviarFormulario = async (formulario) => {

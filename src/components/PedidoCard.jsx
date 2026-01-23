@@ -4,9 +4,10 @@ import "@/styles/PedidoCard.css";
 function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo }) {
   const fecha = new Date(pedido.fecha_entrega);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
-
+  const pedidoClass = pedido.observaciones? "pedido con_observaciones" : "pedido";
+  
   return (
-    <div className="pedido">      
+    <div className={pedidoClass}>      
       <div className="pedido__header">
         <strong>{pedido.id}</strong>
         <strong>{pedido.horario}</strong>

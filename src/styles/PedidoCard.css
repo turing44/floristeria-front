@@ -15,10 +15,7 @@
   box-shadow: var(--shadow);
   overflow: hidden;
   max-width: 720px;
-
   border-left: 10px solid grey; /*indiferente*/
-
-  
 }
 
 .mannana {
@@ -28,6 +25,10 @@
 .tarde {
   border-left: 10px solid rgb(255, 136, 0);
 
+}
+
+.pedido.con_observaciones{
+    border-right: 10px solid yellow; /*indiferente*/
 }
 
 /* Header: 3 datos alineados (id / horario / fecha) */
