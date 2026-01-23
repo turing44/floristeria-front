@@ -2,7 +2,7 @@ import React from "react";
 
 
 function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo }) {
-  const fecha = new Date(pedido.fecha);
+  const fecha = new Date(pedido.fecha_entrega);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
 
   return (
