@@ -7,7 +7,7 @@
   --gap: 12px;
 }
 
-.entrega {
+.pedido {
   position: relative;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -31,7 +31,7 @@
 }
 
 /* Header: 3 datos alineados (id / horario / fecha) */
-.entrega__header {
+.pedido__header {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: var(--gap);
@@ -40,7 +40,7 @@
   align-items: center;
 }
 
-.entrega__header strong {
+.pedido__header strong {
   color: var(--text);
   font-weight: 700;
 }
@@ -48,22 +48,22 @@
 
 
 /* Content */
-.entrega__content {
+.pedido__content {
   position: relative;
   padding: 14px 16px 10px 16px;
 }
 
-.entrega__content p {
+.pedido__content p {
   margin: 0 0 10px 0;
   color: var(--text);
   line-height: 1.35;
 }
 
-.entrega__content p:last-of-type {
+.pedido__content p:last-of-type {
   margin-bottom: 0;
 }
 
-.entrega__content a {
+.pedido__content a {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -74,7 +74,7 @@
 
 
 /* Acciones */
-.entrega__actions {
+.pedido__actions {
   display: grid;
   grid-template-columns: auto auto auto 1fr;
   gap: 10px;
@@ -85,28 +85,28 @@
 
 
 
-.entrega__actions .btn:focus-visible {
+.pedido__actions .btn:focus-visible {
   outline: 3px solid rgba(59, 130, 246, 0.45);
   outline-offset: 2px;
 }
 
 /* Hover sutil de la tarjeta */
-.entrega:hover {
+.pedido:hover {
     box-shadow: 5px 5px 10px rgba(166, 255, 42, 0.344);
 }
 
 /* Responsive: header en 2 filas si no cabe */
 @media (max-width: 520px) {
-  .entrega__header {
+  .pedido__header {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "id id"
       "horario fecha";
   }
 
-  .entrega__header strong:nth-child(1) { grid-area: id; }
-  .entrega__header strong:nth-child(2) { grid-area: horario; }
-  .entrega__header strong:nth-child(3) { grid-area: fecha; justify-self: end; }
+  .pedido__header strong:nth-child(1) { grid-area: id; }
+  .pedido__header strong:nth-child(2) { grid-area: horario; }
+  .pedido__header strong:nth-child(3) { grid-area: fecha; justify-self: end; }
 
 
 }

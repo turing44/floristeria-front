@@ -1,19 +1,19 @@
 import React from "react";
-
+import "@/styles/PedidoCard.css";
 
 function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo }) {
   const fecha = new Date(pedido.fecha_entrega);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
 
   return (
-    <div className="entrega">      
-      <div className="entrega__header">
+    <div className="pedido">      
+      <div className="pedido__header">
         <strong>{pedido.id}</strong>
         <strong>{pedido.horario}</strong>
         <strong>{fechaFormateada}</strong>
       </div>
 
-      <div className="entrega__content">
+      <div className="pedido__content">
         <p>Producto: {pedido.producto}</p>
 
         <p>Cliente: {pedido.cliente}</p>
@@ -26,7 +26,7 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         </p>
       </div>
 
-      <div className="entrega__actions">
+      <div className="pedido__actions">
         <button
           className="btn btn-info"
           onClick={() => handleMasInfo(pedido)}
@@ -62,8 +62,6 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         >
           Confirmar
         </button>
-
-
       </div>
     </div>
   );
