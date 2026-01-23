@@ -1,6 +1,6 @@
 export function mapPedidoFromDto(dto) {
     const pedido = {
-        id: dto.pedido_id ?? "",
+        id: dto.id ?? "",
         fuente: dto.pedido?.fuente ?? "",
         producto: dto.pedido?.producto ?? "",
         precio: dto.pedido?.precio ?? "",

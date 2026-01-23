@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { listReservas } from "../api/services/reservasApi";
+import { listReservas, deleteReserva } from "../api/services/reservasApi";
 
 
 export function useReservas({ sort }) {
@@ -10,16 +10,15 @@ export function useReservas({ sort }) {
     }
 
     useEffect(() => {
-        
-        
         refetch()
         console.log(reservas);
         
     }, [sort])
 
 
-    function remove(id) {
-        return deleteReserva(id).then(refetch)
+    async function remove(id) {
+        refetch();
+        return await deleteReserva(id)
     }
 
 

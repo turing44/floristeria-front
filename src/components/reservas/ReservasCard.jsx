@@ -3,6 +3,7 @@ import "./css/EntregaCard.css";
 import Swal from "sweetalert2";
 
 function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) {
+  console.log(reserva);
   const masInfo = (r) => {
     Swal.fire({
       title: r.id,
@@ -12,10 +13,10 @@ function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) 
         <p>Cliente: ${r.cliente}</p>
         <p>Cliente Telf: <a href="tel:${r.telf_cliente}">${r.telf_cliente}</a></p> 
         <br />
-        <p>Destinatario: ${r.nombre_mensaje}</p>
+        <p>Nombre mensaje: ${r.destinatario}</p>
         <p>Estado Pago: ${r.estado_pago}</p>
         <p>Dinero a cuenta: ${r.dinero_a_cuenta} €</p>
-        ${r.texto_mensaje !== null ? "<br /><p>Mensaje: " + r.texto_mensaje + " </p>" : ""}
+        ${r.mensaje !== null ? "<br /><p>Mensaje: " + r.mensaje + " </p>" : ""}
         ${r.observaciones !== null ? "<br /><p>Observaciones: " + r.observaciones + " </p>" : ""}
       `,
     });
