@@ -58,7 +58,7 @@ function MainPage({
         }
     }
 
-    const handleImprimir = async (id) => {
+    const handleMostrarPdf = async (id) => {
         try {
             const blob = await getPdf(id)
             const url = URL.createObjectURL(blob)
@@ -85,6 +85,8 @@ function MainPage({
                 sort={sort}
                 setSort={setSort}
                 setModo={setModo}
+                handleMostrarPdf={handleMostrarPdf}
+                tipo={tipo}
             />
             <div id='main-grid'>
                 {items.map(pedido => (
@@ -93,7 +95,7 @@ function MainPage({
                         pedido={pedido}
                         handleEditar={handleEditar}
                         handleArchivar={handleArchivar}
-                        handleImprimir={handleImprimir}
+                        handleMostrarPdf={handleMostrarPdf}
                         handleMasInfo={handleMasInfo}
                     />
                 ))}

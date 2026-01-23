@@ -7,3 +7,8 @@
     gap: 1rem;
     padding: 1rem;
 }
+
+.cuadro-busqueda-id {
+    display: flex;
+    gap: 0.5rem;
+}
