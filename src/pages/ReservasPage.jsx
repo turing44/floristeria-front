@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./EntregaPage.css"
 import Swal from 'sweetalert2'
 import { getReservaPdf } from '../api/services/imprimirApi'
-import { createReserva, deleteReserva } from '../api/services/reservasApi'
+import { createReserva, deleteReserva, updateReserva } from '../api/services/reservasApi'
 import { useReservas } from '../hooks/useReservas'
 import ReservasSideBar from '../components/reservas/ReservasSideBar'
 import FormReserva from '../components/reservas/FormReserva'
@@ -14,12 +14,17 @@ function ReservasPage() {
     // vista o form 
     const [modo, setModo] = useState("vista")
 
-    const { reservas } = useReservas({ sort })
+    const { reservas, remove, refetch } = useReservas({ sort })
 
 
 
     const enviarFormulario = async (formulario) => {
-        await createReserva(formulario)
+        if (editId !== null) {
+            await updateReserva(editId, formulario)
+        } else {
+            await createReserva(formulario)
+            
+        }
         setEditId(null)
         setModo("vista")
     }
@@ -48,7 +53,7 @@ function ReservasPage() {
     }
 
     const handleArchivarReserva = (id) => {
-        deleteReserva(id)
+        remove(id)
             .then(Swal.fire({
                 icon: "success",
                 title: "Reserva archivada"

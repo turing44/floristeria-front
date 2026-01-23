@@ -45,18 +45,21 @@ function EntregasPage() {
         setModo("form")
     }
 
-    const handleArchivarEntrega = (id) => {
-        remove(id)
-        .then(res => {
+    const handleArchivarEntrega = async (id) => {
+        try {
+            remove(id)
             Swal.fire({
-            icon: "success",
-            title: "Entrega archivada"
+                icon: "success",
+                title: "Entrega archivada",
             })
-        })
-        .catch(err => Swal.fire({
-            icon: "error",
-            title: "Error al archivar la entrega"
-        }))
+
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error al archivar la entrega",
+                text: error.message,
+            })
+        }
     }
 
     const handleImprimir = async (id) => {

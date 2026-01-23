@@ -7,7 +7,6 @@ function ReservasSideBar({ setModo }) {
     return (
         <aside id='entregas-aside'>
             <form className="es-form">
-                <h2>PENDIENTE IMPLEMENTAR FILTROS SI CORRESPONDE.</h2>
                 <button
                     onClick={() => {
                         setModo("form")
