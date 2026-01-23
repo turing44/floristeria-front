@@ -1,0 +1,36 @@
+#main-page {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    
+    min-height: 100vh;
+
+    gap: 1rem;
+}
+
+
+#main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+
+    height: fit-content;
+    gap: 2rem;
+}
+
+
+
+@media (max-width: 768px) {
+    #main-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+
+    }
+
+    #main-page aside {
+        order: 1;
+    }
+
+    #main-grid {
+        order: 2;
+    }
+    
+}

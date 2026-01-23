@@ -21,7 +21,7 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         <p>
           Teléfono cliente:{" "}
           <a href={`tel:${pedido.telf_cliente}`}>
-            {pedido.telf_cliente}
+            {pedido.telf_cliente}git 
           </a>
         </p>
       </div>

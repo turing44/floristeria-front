@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect } from "react";
-import "./css/FormEntrega.css";
+import "@/styles/FormPedido.css";
 import { getEntrega } from "../../api/services/entregasApi";
 import FormPedidos from "../genericos/FormPedidos";
 
@@ -47,12 +47,12 @@ export default function FormEntrega({
 
 
   useEffect(() => {
-    if (modo === "crear") {
-      setForm(initialValue)
-    } else {
-      getEntrega(editId).then(setForm)
-    }
-  }, [initialValue, modo, editId])
+          if (!editId) {
+              setForm(initialValue);
+          } else {
+              getReserva(editId).then(setForm);
+          }
+      }, [initialValue, editId])
 
 
   if (!initialValue) {

@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect } from "react";
-import "./css/FormReserva.css";
+import "@/styles/FormPedido.css";
 import { getReserva } from "../../api/services/reservasApi";
 import FormPedidos from "../genericos/FormPedidos";
 
@@ -26,7 +26,6 @@ export const defaultReserva = {
 export default function FormReserva({
     initialValue = defaultReserva,
     editId = null,
-    modo,
     onSubmit,
     onCancel,
     title = "Reserva",
@@ -45,12 +44,13 @@ export default function FormReserva({
 
 
     useEffect(() => {
-        if (modo === "crear") {
-          setForm(initialValue)
+        if (!editId) {
+            setForm(initialValue);
         } else {
-          getReserva(editId).then(setForm)
+            getReserva(editId).then(setForm);
+
         }
-      }, [initialValue, modo, editId])
+    }, [initialValue, editId])
 
     if (!initialValue) {
         return <p>Cargando formulario...</p>
