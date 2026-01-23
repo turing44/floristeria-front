@@ -5,13 +5,18 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
   const fecha = new Date(pedido.fecha_entrega);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
   const pedidoClass = pedido.observaciones ? "pedido con_observaciones" : "pedido";
-  const reservaPagada = pedido.estado_pago === "PAGADO" ? "PAGADO" : "";
+  const reservaPagada = pedido.estado_pago === "PENDIENTE" ? "PENDIENTE" : "";
+
+  console.log(pedido);
+  
   return (
     <div className={pedidoClass}>
       <div className="pedido__header">
         <strong>{pedido.id}</strong>
+        <strong>{reservaPagada}</strong>
         <strong>{pedido.horario}</strong>
         <strong>{fechaFormateada}</strong>
+        
       </div>
 
       <div className="pedido__content">
@@ -22,12 +27,10 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         <p>
           Teléfono cliente:{" "}
           <a href={`tel:${pedido.telf_cliente}`}>
-            {pedido.telf_cliente}git
+            {pedido.telf_cliente}
           </a>
         </p>
-        <p>
-          <strong>{reservaPagada}</strong>
-        </p>
+        
       </div>
 
       <div className="pedido__actions">

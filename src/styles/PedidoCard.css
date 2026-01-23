@@ -15,7 +15,7 @@
   box-shadow: var(--shadow);
   overflow: hidden;
   max-width: 720px;
-  border-left: 10px solid grey; /*indiferente*/
+  border-left: 10px solid rgb(228, 228, 228); /*indiferente*/
 }
 
 .mannana {
@@ -28,14 +28,14 @@
 }
 
 .pedido.con_observaciones{
-    border-right: 10px solid yellow; /*indiferente*/
+    border-left: 10px solid rgb(13,203,241); /*indiferente*/
 }
 
 /* Header: 3 datos alineados (id / horario / fecha) */
 .pedido__header {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: var(--gap);
+  grid-template-columns: 1fr auto auto auto;
+  gap: var(--gap); 
   padding: 14px 16px;
   border-bottom: 1px solid var(--card-border);
   align-items: center;
@@ -93,7 +93,7 @@
 
 /* Hover sutil de la tarjeta */
 .pedido:hover {
-    box-shadow: 5px 5px 10px rgba(166, 255, 42, 0.344);
+    box-shadow: 5px 5px 10px rgba(216, 216, 216, 0.344);
 }
 
 /* Responsive: header en 2 filas si no cabe */
