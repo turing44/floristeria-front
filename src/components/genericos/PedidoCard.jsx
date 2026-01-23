@@ -1,28 +1,27 @@
 import React from "react";
-import "./css/EntregaCard.css";
-import Swal from "sweetalert2";
 
-function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) {
-  const fecha = new Date(reserva.fecha_entrega);
+
+function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo }) {
+  const fecha = new Date(pedido.fecha);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
 
   return (
     <div className="entrega">      
       <div className="entrega__header">
-        <strong>{reserva.id}</strong>
-        <strong>{reserva.horario}</strong>
+        <strong>{pedido.id}</strong>
+        <strong>{pedido.horario}</strong>
         <strong>{fechaFormateada}</strong>
       </div>
 
       <div className="entrega__content">
-        <p>Producto: {reserva.producto}</p>
+        <p>Producto: {pedido.producto}</p>
 
-        <p>Cliente: {reserva.cliente}</p>
+        <p>Cliente: {pedido.cliente}</p>
 
         <p>
           Teléfono cliente:{" "}
-          <a href={`tel:${reserva.telf_cliente}`}>
-            {reserva.telf_cliente}
+          <a href={`tel:${pedido.telf_cliente}`}>
+            {pedido.telf_cliente}
           </a>
         </p>
       </div>
@@ -30,7 +29,7 @@ function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) 
       <div className="entrega__actions">
         <button
           className="btn btn-info"
-          onClick={() => masInfo(reserva)}
+          onClick={() => handleMasInfo(pedido)}
           aria-label="Más información"
           type="button"
         >
@@ -41,7 +40,7 @@ function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) 
           className="btn btn-warning"
           aria-label="Editar"
           type="button"
-          onClick={() => handleEditar(reserva.id)}
+          onClick={() => handleEditar(pedido.id)}
         >
           <i className="fa-solid fa-pen-to-square"></i>
         </button>
@@ -50,7 +49,7 @@ function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) 
           className="btn btn-success"
           aria-label="Imprimir"
           type="button"
-          onClick={() => handleImprimir(reserva.id)}
+          onClick={() => handleImprimir(pedido.id)}
         >
           <i className="fa-solid fa-print"></i>
         </button>
@@ -59,7 +58,7 @@ function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) 
           className="btn btn-success"
           aria-label="Archivar"
           type="button"
-          onClick={() => handleArchivar(reserva.id)}
+          onClick={() => handleArchivar(pedido.id)}
         >
           Confirmar
         </button>
@@ -70,4 +69,4 @@ function ReservaCard({ reserva, handleEditar, handleArchivar, handleImprimir }) 
   );
 }
 
-export default ReservaCard;
+export default PedidoCard;
