@@ -94,6 +94,7 @@ export default function FormReserva({
                             onChange={(e) => setField("dinero_dejado_a_cuenta", e.target.value)}
                             inputMode="decimal"
                             placeholder="0.00"
+                            max={form.precio}
                         />
                     </div>
                 </div>

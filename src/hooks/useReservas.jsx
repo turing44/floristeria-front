@@ -17,8 +17,9 @@ export function useReservas({ sort }) {
 
 
     async function remove(id) {
+        await deleteReserva(id)
         refetch();
-        return await deleteReserva(id)
+
     }
 
 

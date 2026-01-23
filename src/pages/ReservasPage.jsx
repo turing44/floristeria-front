@@ -19,14 +19,20 @@ function ReservasPage() {
 
 
     const enviarFormulario = async (formulario) => {
+        try {
         if (editId !== null) {
             await updateReserva(editId, formulario)
         } else {
             await createReserva(formulario)
             
         }
-        setEditId(null)
-        setModo("vista")
+            setEditId(null)
+            setModo("vista")
+            refetch()  
+        } catch (error) {   
+            console.log("Error al enviar el formulario:", error)
+        }
+        
     }
 
     const handleMasInfo = (reserva) => {

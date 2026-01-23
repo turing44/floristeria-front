@@ -23,7 +23,7 @@ export async function createReserva(reserva) {
 
     const dto = mapReservaToDto(reserva)
 
-    const response = await httpPost(RUTA_RESERVAS, { body: dto })
+    const response = await httpPost(RUTA_RESERVAS, dto)
     return mapReservaFromDto(response)
 
 }
@@ -31,7 +31,7 @@ export async function createReserva(reserva) {
 export async function updateReserva(id, reserva) {
     const dto = mapReservaToDto(reserva)
 
-    const response = await httpPut(RUTA_RESERVAS + "/" + id, { body: dto })
+    const response = await httpPut(RUTA_RESERVAS + "/" + id, dto)
     return mapReservaFromDto(response)
 
 }
