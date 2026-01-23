@@ -18,14 +18,6 @@
   border-left: 10px solid rgb(228, 228, 228); /*indiferente*/
 }
 
-.mannana {
-  border-left: 10px solid rgb(95, 255, 71);
-}
-
-.tarde {
-  border-left: 10px solid rgb(255, 136, 0);
-
-}
 
 .pedido.con_observaciones{
     border-left: 10px solid rgb(13,203,241); /*indiferente*/
@@ -101,13 +93,14 @@
   .pedido__header {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "id id"
-      "horario fecha";
+      "id id id"
+      "estado horario fecha";
   }
 
   .pedido__header strong:nth-child(1) { grid-area: id; }
-  .pedido__header strong:nth-child(2) { grid-area: horario; }
-  .pedido__header strong:nth-child(3) { grid-area: fecha; justify-self: end; }
+  .pedido__header strong:nth-child(2) { grid-area: estado; }
+  .pedido__header strong:nth-child(3) { grid-area: horario; }
+  .pedido__header strong:nth-child(4) { grid-area: fecha; justify-self: end; }
 
 
 }
