@@ -1,7 +1,7 @@
 
 export async function getEntregaPdf(id) {
     try {
-        const entrega = await fetch(`http://localhost:8000/api/entregas/${id}/pdf`, {
+        const entrega = await fetch(`http://localhost:8000/api/entregas/pdf/${id}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/pdf",
@@ -24,7 +24,7 @@ export async function getEntregaPdf(id) {
  */
 export async function getReservaPdf(id) {
     try {
-        const entrega = await fetch(`http://localhost:8000/api/reservas/${id}/pdf`, {
+        const entrega = await fetch(`http://localhost:8000/api/reservas/pdf/${id}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/pdf",

@@ -17,7 +17,7 @@ function EntregasPage() {
     const [modo, setModo] = useState("vista")
 
     const { entregas, remove, refetch } = useEntregas({ sort })
-
+    console.log(entregas);
     const enviarFormulario = async (formulario) => {
 
         try {
