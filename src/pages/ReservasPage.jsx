@@ -38,10 +38,10 @@ function ReservasPage() {
         <p>Cliente: ${reserva.cliente}</p>
         <p>Cliente Telf: <a href="tel:${reserva.telf_cliente}">${reserva.telf_cliente}</a></p> 
         <br />
-        <p>Destinatario: ${reserva.nombre_mensaje}</p>
+        <p>Destinatario: ${reserva.destinatario}</p>
         <p>Estado Pago: ${reserva.estado_pago}</p>
-        <p>Dinero a cuenta: ${reserva.dinero_a_cuenta} €</p>
-        ${reserva.texto_mensaje !== null ? "<br /><p>Mensaje: " + reserva.texto_mensaje + " </p>" : ""}
+        <p>Dinero a cuenta: ${reserva.dinero_dejado_a_cuenta} €</p>
+        ${reserva.mensaje !== null ? "<br /><p>Mensaje: " + reserva.mensaje + " </p>" : ""}
         ${reserva.observaciones !== null ? "<br /><p>Observaciones: " + reserva.observaciones + " </p>" : ""}
       `,
         });

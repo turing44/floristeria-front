@@ -59,6 +59,7 @@ export default function FormEntrega({
     return <p>Cargando formulario...</p>
   }
 
+  console.log(form);
   return (
     <form className="ef-form" onSubmit={handleSubmit}>
       <FormPedidos

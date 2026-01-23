@@ -17,9 +17,9 @@ export const defaultReserva = {
     telf_cliente: "",
     horario: "",
     observaciones: "",
-    nombre_mensaje: "",
-    texto_mensaje: "",
-    dinero_a_cuenta: "",
+    destinatario: "",
+    mensaje: "",
+    dinero_dejado_a_cuenta: "",
     estado_pago: "PENDIENTE",
 };
 
@@ -32,7 +32,7 @@ export default function FormReserva({
     title = "Reserva",
 }) {
 
-    const [form, setForm] = useState(defaultReserva);
+    const [form, setForm] = useState(initialValue);
 
     const setField = (name, value) => {
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -46,12 +46,11 @@ export default function FormReserva({
 
     useEffect(() => {
         if (modo === "crear") {
-            setForm(initialValue)
+          setForm(initialValue)
         } else {
-            getReserva(editId).then(setForm)
+          getReserva(editId).then(setForm)
         }
-    }, [initialValue])
-
+      }, [initialValue, modo, editId])
 
     if (!initialValue) {
         return <p>Cargando formulario...</p>
@@ -59,7 +58,6 @@ export default function FormReserva({
 
     return (
         <form className="ef-form" onSubmit={handleSubmit}>
-
             <FormPedidos
                 form={form}
                 setField={setField}
@@ -68,7 +66,6 @@ export default function FormReserva({
 
             <section className="ef-section">
                 <h2 className="ef-sectionTitle">Estado Reserva</h2>
-
                 <div className="ef-grid">
                     <div className="ef-field">
                         <label className="ef-label" htmlFor="estado_pago">
@@ -86,18 +83,17 @@ export default function FormReserva({
                     </div>
 
                     <div className="ef-field">
-                        <label className="ef-label" htmlFor="dinero_a_cuenta">
+                        <label className="ef-label" htmlFor="dinero_dejado_a_cuenta">
                             Dinero a Cuenta (€)
                         </label>
                         <input
-                            id="dinero_a_cuenta"
+                            id="dinero_dejado_a_cuenta"
                             className="ef-input"
-                            type="number"
-                            value={form.dinero_a_cuenta}
-                            onChange={(e) => setField("dinero_a_cuenta", e.target.value)}
+                            type="text"
+                            value={form.dinero_dejado_a_cuenta}
+                            onChange={(e) => setField("dinero_dejado_a_cuenta", e.target.value)}
                             inputMode="decimal"
                             placeholder="0.00"
-                            min="0"
                         />
                     </div>
                 </div>
@@ -113,8 +109,8 @@ export default function FormReserva({
                         <textarea
                             id="nombre_destinatario"
                             className="ef-input ef-textarea"
-                            value={form.nombre_mensaje ?? ""}
-                            onChange={(e) => setField("nombre_mensaje", e.target.value === "" ? null : e.target.value)}
+                            value={form.destinatario ?? ""}
+                            onChange={(e) => setField("destinatario", e.target.value)}
                             rows={4}
                         />
                     </div>
@@ -126,17 +122,13 @@ export default function FormReserva({
                         <textarea
                             id="mensaje"
                             className="ef-input ef-textarea"
-                            value={form.texto_mensaje ?? ""}
-                            onChange={(e) => setField("texto_mensaje", e.target.value === "" ? null : e.target.value)}
+                            value={form.mensaje ?? ""}
+                            onChange={(e) => setField("mensaje", e.target.value)}
                             rows={3}
                         />
                     </div>
                 </div>
             </section>
-
-
-
-
 
             <footer className="ef-actions ef-actions--bottom">
                 {typeof onCancel === "function" && (

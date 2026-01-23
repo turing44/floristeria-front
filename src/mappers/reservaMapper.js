@@ -5,7 +5,7 @@ export function mapReservaFromDto(dto) {
     const reserva = {
         ...mapPedidoFromDto(dto),
 
-        dinero_dejado_a_cuenta: dto.dinero_dejado_a_cuenta ?? null,
+        dinero_dejado_a_cuenta: dto.dinero_a_cuenta ?? "",
         estado_pago: dto.estado_pago,
     }
 

@@ -1,4 +1,4 @@
-import { mapReservaFromDto } from "../../mappers/reservaMapper";
+import { mapReservaFromDto, mapReservaToDto } from "../../mappers/reservaMapper";
 import { httpGet, httpPost, httpPut, httpDelete } from "../cliente"
 
 
@@ -15,7 +15,8 @@ export async function listReservas() {
 }
 
 export async function getReserva(id) {
-    return await httpGet(RUTA_RESERVAS + "/" + id)
+    const dto = await httpGet(RUTA_RESERVAS + "/" + id)
+    return mapReservaFromDto(dto)
 }
 
 export async function createReserva(reserva) {
@@ -31,7 +32,7 @@ export async function updateReserva(id, reserva) {
     const dto = mapReservaToDto(reserva)
 
     const response = await httpPut(RUTA_RESERVAS + "/" + id, { body: dto })
-    return mapEntregaFromDto(response)
+    return mapReservaFromDto(response)
 
 }
 
