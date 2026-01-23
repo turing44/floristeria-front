@@ -6,11 +6,15 @@ export function useReservas({ sort }) {
     const [reservas, setReservas] = useState([])
 
     function refetch() {
-        return listReservas({ sort }).then(setReservas)
+        return listReservas(sort).then(setReservas)
     }
 
     useEffect(() => {
+        
+        
         refetch()
+        console.log(reservas);
+        
     }, [sort])
 
 
