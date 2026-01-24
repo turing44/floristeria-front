@@ -111,6 +111,7 @@ function MainPage({
                     <PedidoCard
                         key={pedido.id}
                         pedido={pedido}
+                        tipo={tipo}
                         handleEditar={handleEditar}
                         handleArchivar={handleArchivar}
                         handleMostrarPdf={handleMostrarPdf}

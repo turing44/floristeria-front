@@ -1,13 +1,8 @@
+import { pdfGET } from "../clientePdf"
 
 export async function getEntregaPdf(id) {
     try {
-        const entrega = await fetch(`http://localhost:8000/api/entregas/pdf/${id}`, {
-            "method": "GET",
-            "headers": {
-                "Accept": "application/pdf",
-                
-            }
-        })
+        const entrega = await pdfGET(`/entregas/pdf/${id}`) 
 
         return await entrega.blob()
         
@@ -24,18 +19,10 @@ export async function getEntregaPdf(id) {
  */
 export async function getReservaPdf(id) {
     try {
-        const reserva = await fetch(`http://localhost:8000/api/reservas/pdf/${id}`, {
-            "method": "GET",
-            "headers": {
-                "Accept": "application/pdf",
-                
-            }
-        })
+        const reserva = await pdfGET(`/reservas/pdf/${id}`)
 
-        const blob = await reserva.blob()
-        const url = URL.createObjectURL(blob)
-
-        return url
+        return await reserva.blob()
+        
 
     } catch (error) {
         console.log(error)
