@@ -38,7 +38,7 @@ function SideBar({sort, setSort, setModo, tipo, handleMostrarPdf, handleMostrarA
         >
             <option value="fecha_desc">Fecha descendente</option>
             <option value="fecha_asc">Fecha ascendente</option>
-            <option value="codigo-postal">Codigo Postal</option>
+            <option value="cp">Codigo Postal</option>
         </select>
 
         <button

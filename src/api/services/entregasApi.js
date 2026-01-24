@@ -4,7 +4,7 @@ import { httpDelete, httpGet, httpPost, httpPut } from "../cliente";
 const RUTA_ENTREGAS = "/entregas";
 
 export async function listEntregas({ sort = "fecha_desc" } = {}) {
-    const dtos = await httpGet(RUTA_ENTREGAS + "?" + new URLSearchParams({ sort }));
+    const dtos = await httpGet(RUTA_ENTREGAS + "?" + new URLSearchParams({ ordenar: sort }));
     return dtos.entregas.map(mapEntregaFromDto);
 }
 

@@ -5,7 +5,7 @@ import { httpGet, httpPost, httpPut, httpDelete } from "../cliente"
 const RUTA_RESERVAS = "/reservas"
 
 export async function listReservas({sort = "fecha_desc"} = {}) {
-    const dtos = await httpGet(RUTA_RESERVAS + "?" + new URLSearchParams({ sort }));
+    const dtos = await httpGet(RUTA_RESERVAS + "?" + new URLSearchParams({ ordenar: sort }));
     return dtos.reservas.map(mapReservaFromDto)
 }
 
