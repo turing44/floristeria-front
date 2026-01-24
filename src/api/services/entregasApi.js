@@ -63,3 +63,7 @@ export async function listEntregasArchivadas({ sort = "fecha_desc" } = {}) {
     const dtos = await httpGet(RUTA_ENTREGAS + "/archivadas?" + new URLSearchParams({ sort }));
     return dtos.entregas.map(mapEntregaFromDto);
 }
+
+export async function restaurarEntrega(id) {
+    return await httpPost(RUTA_ENTREGAS + "/restaurar/" + id);
+}

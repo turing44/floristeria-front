@@ -23,6 +23,7 @@ async function request(path, {method = "GET", body} = {}) {
         const error = new Error("HTTP_ERROR");
         error.status = response.status;
         error.errors = response.errors;
+        error.message = response.message;
         throw error;
     }
 

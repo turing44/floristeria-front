@@ -21,7 +21,7 @@ function MainPage({
     //Necesito hacer esto porque la API devuelve un objeto y necesito decirle lo que tiene que destructurar de forma personalizada (entrega o reserva)
     const hookItems = useHook({ sort });
     //Aquí se usa el objeto que viene del hook para destucturar lo que necesitamos, si se usan dos hook da error porque utiliza el último usado.
-    const { remove, refetch } = hookItems;
+    const { remove, refetch, restaurar } = hookItems;
     const items = hookItems[tipo] || []
 
     const hookItemsArchivados = useHookArchivadas({ sort })
@@ -83,6 +83,26 @@ function MainPage({
 
     const handleMostrarArchivadas = async () => {
         setMostrarArchivadas(prev => !prev);
+        refetch();
+        refetchArchivadas();
+    }
+
+    const handleRestaurar = async (id) => {
+        try {
+            await restaurar(id);
+            refetch();
+            refetchArchivadas();
+            Swal.fire({
+                icon: "success",
+                title: "Elemento restaurado",
+            })
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error al restaurar el elemento",
+                text: error.message,
+            })
+        }
     }
 
     if (modo !== "vista") {
@@ -116,6 +136,7 @@ function MainPage({
                         handleArchivar={handleArchivar}
                         handleMostrarPdf={handleMostrarPdf}
                         handleMasInfo={handleMasInfo}
+                        handleRestaurar={handleRestaurar}
                         mostrarArchivadas = {mostrarArchivadas}
                     />
                 ))}

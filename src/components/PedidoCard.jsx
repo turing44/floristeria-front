@@ -60,7 +60,8 @@ function PedidoCard({
   handleArchivar, 
   handleMostrarPdf, 
   handleMasInfo, 
-  mostrarArchivadas 
+  handleRestaurar,
+  mostrarArchivadas,
 }) 
 {
   const fecha = new Date(pedido.fecha_entrega);
@@ -112,16 +113,32 @@ function PedidoCard({
         >
           <i className="fa-solid fa-print"></i>
         </button>
-        {!mostrarArchivadas && (
-          <button
-            className="btn btn-success"
-            aria-label="Archivar"
-            type="button"
-            onClick={() => handleArchivar(pedido.id)}
-          >
-            Confirmar
-          </button>
-        )}
+
+        {
+          mostrarArchivadas 
+          ? (
+            <button
+              className="btn btn-warning"
+              aria-label="Restaurar"
+              type="button"
+              onClick={() => handleRestaurar(pedido.id)}
+            >
+              Restaurar
+            </button>
+          ) : 
+          (
+            <button
+              className="btn btn-success"
+              aria-label="Archivar"
+              type="button"
+              onClick={() => handleArchivar(pedido.id)}
+            >
+              Confirmar
+            </button>
+          )
+        }  
+
+
 
       </div>
     </div>

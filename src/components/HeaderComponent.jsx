@@ -52,27 +52,7 @@ function HeaderComponent() {
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink
-                  to="/entregas-archivadas"
-                  className={({ isActive }) =>
-                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
-                  }
-                >
-                  Entregas Archivadas
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  to="/reservas-archivadas"
-                  className={({ isActive }) =>
-                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
-                  }
-                >
-                  Reservas Archivadas
-                </NavLink>
-              </li>
+        
             </ul>
 
           </div>

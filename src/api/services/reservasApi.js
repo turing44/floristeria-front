@@ -41,3 +41,7 @@ export async function listReservasArchivadas({ sort = "fecha_desc" } = {}) {
     console.log(dtos.reservas.map(mapReservaFromDto));
     return dtos.reservas.map(mapReservaFromDto);
 }
+
+export async function restaurarReserva(id) {
+    return await httpPost(RUTA_RESERVAS + "/restaurar/" + id);
+}

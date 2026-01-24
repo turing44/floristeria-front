@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { listReservas, deleteReserva } from "../api/services/reservasApi";
+import { listReservas, deleteReserva, restaurarReserva } from "../api/services/reservasApi";
 
 
 export function useReservas({ sort }) {
@@ -22,6 +22,11 @@ export function useReservas({ sort }) {
 
     }
 
+    async function restaurar(id) {
+        await restaurarReserva(id);
+        refetch();
+    }   
 
-    return { reservas, remove, refetch }
+
+    return { reservas, remove, restaurar, refetch }
 }
