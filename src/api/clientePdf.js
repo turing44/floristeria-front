@@ -14,8 +14,6 @@ export function pdfGET(path) {
         title: 'Cargando',
         text: 'Espera un momento...',
         icon: 'success',
-        timer: 2500,
-        timerProgressBar: true,
         showConfirmButton: false,
         allowEscapeKey: false,
         allowOutsideClick: false
