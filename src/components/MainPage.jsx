@@ -25,7 +25,7 @@ function MainPage({
     const items = hookItems[tipo] || []
 
     const hookItemsArchivados = useHookArchivadas({ sort })
-    const refetchArchivadas = hookItemsArchivados;
+    const {refetchArchivadas} = hookItemsArchivados;
     const itemsArchivados = hookItemsArchivados[tipo + "Archivadas"] || []
 
     const itemsToShow = mostrarArchivadas ? itemsArchivados : items;
@@ -56,6 +56,7 @@ function MainPage({
     const handleArchivar = async (id) => {
         try {
             remove(id)
+            refetchArchivadas()
             Swal.fire({
                 icon: "success",
                 title: "Entrega archivada",

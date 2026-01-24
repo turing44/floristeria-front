@@ -5,14 +5,14 @@ import { listEntregasArchivadas } from "../api/services/entregasApi";
 export function useEntregasArchivadas({ sort }) {
     const [entregasArchivadas, setEntregasArchivadas] = useState([])
 
-    function refetch() {
+    function refetchArchivadas() {
         return listEntregasArchivadas(sort).then(setEntregasArchivadas)
     }
 
     useEffect(() => {
-        refetch()
+        refetchArchivadas()
         console.log(entregasArchivadas);
         
     }, [sort])
-    return { entregasArchivadas, refetch }
+    return { entregasArchivadas, refetchArchivadas }
 }
