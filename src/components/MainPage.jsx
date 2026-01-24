@@ -25,7 +25,7 @@ function MainPage({
     const items = hookItems[tipo] || []
 
     const hookItemsArchivados = useHookArchivadas({ sort })
-    const {refetchArchivadas} = hookItemsArchivados;
+    const { refetchArchivadas } = hookItemsArchivados;
     const itemsArchivados = hookItemsArchivados[tipo + "Archivadas"] || []
 
     const itemsToShow = mostrarArchivadas ? itemsArchivados : items;
@@ -108,7 +108,6 @@ function MainPage({
     if (modo !== "vista") {
         return (
             <FormComponent
-                modo={modo}
                 editId={editId}
                 onSubmit={enviarFormulario}
             />
@@ -124,7 +123,7 @@ function MainPage({
                 handleMostrarPdf={handleMostrarPdf}
                 tipo={tipo}
                 handleMostrarArchivadas={handleMostrarArchivadas}
-                textoBotonArchivadas = {textoBotonArchivadas}
+                textoBotonArchivadas={textoBotonArchivadas}
             />
             <div id='main-grid'>
                 {itemsToShow.map(pedido => (
@@ -137,7 +136,7 @@ function MainPage({
                         handleMostrarPdf={handleMostrarPdf}
                         handleMasInfo={handleMasInfo}
                         handleRestaurar={handleRestaurar}
-                        mostrarArchivadas = {mostrarArchivadas}
+                        mostrarArchivadas={mostrarArchivadas}
                     />
                 ))}
             </div>
