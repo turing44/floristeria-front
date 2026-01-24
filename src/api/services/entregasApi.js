@@ -58,3 +58,8 @@ function mostrarErroresBackend(error) {
         console.error("Error de red:", error);
     }
 }
+
+export async function listEntregasArchivadas({ sort = "fecha_desc" } = {}) {
+    const dtos = await httpGet(RUTA_ENTREGAS + "/archivadas?" + new URLSearchParams({ sort }));
+    return dtos.entregas.map(mapEntregaFromDto);
+}

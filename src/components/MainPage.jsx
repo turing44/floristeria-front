@@ -6,6 +6,7 @@ import SideBar from '@/components/SideBar'
 
 function MainPage({
     useHook,
+    useHookArchivadas,
     create,
     update,
     handleMasInfo,
@@ -16,11 +17,20 @@ function MainPage({
     const [editId, setEditId] = useState(null)
     const [sort, setSort] = useState("fecha")
     const [modo, setModo] = useState("vista")
+    const [mostrarArchivadas, setMostrarArchivadas] = useState(false);
     //Necesito hacer esto porque la API devuelve un objeto y necesito decirle lo que tiene que destructurar de forma personalizada (entrega o reserva)
-    const hookItems = useHook({sort});
+    const hookItems = useHook({ sort });
     //Aquí se usa el objeto que viene del hook para destucturar lo que necesitamos, si se usan dos hook da error porque utiliza el último usado.
     const { remove, refetch } = hookItems;
     const items = hookItems[tipo] || []
+
+    const hookItemsArchivados = useHookArchivadas({ sort })
+    const refetchArchivadas = hookItemsArchivados;
+    const itemsArchivados = hookItemsArchivados[tipo + "Archivadas"] || []
+
+    const itemsToShow = mostrarArchivadas ? itemsArchivados : items;
+    const textoBotonArchivadas = mostrarArchivadas ? "Mostrar Activas" : "Mostrar Archivadas"
+
 
     const enviarFormulario = async (formulario) => {
         try {
@@ -70,6 +80,10 @@ function MainPage({
         }
     }
 
+    const handleMostrarArchivadas = async () => {
+        setMostrarArchivadas(prev => !prev);
+    }
+
     if (modo !== "vista") {
         return (
             <FormComponent
@@ -88,9 +102,11 @@ function MainPage({
                 setModo={setModo}
                 handleMostrarPdf={handleMostrarPdf}
                 tipo={tipo}
+                handleMostrarArchivadas={handleMostrarArchivadas}
+                textoBotonArchivadas = {textoBotonArchivadas}
             />
             <div id='main-grid'>
-                {items.map(pedido => (
+                {itemsToShow.map(pedido => (
                     <PedidoCard
                         key={pedido.id}
                         pedido={pedido}
@@ -98,6 +114,7 @@ function MainPage({
                         handleArchivar={handleArchivar}
                         handleMostrarPdf={handleMostrarPdf}
                         handleMasInfo={handleMasInfo}
+                        mostrarArchivadas = {mostrarArchivadas}
                     />
                 ))}
             </div>

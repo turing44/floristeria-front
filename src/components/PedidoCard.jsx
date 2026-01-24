@@ -1,14 +1,14 @@
 import React from "react";
 import "@/styles/PedidoCard.css";
 
-function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo }) {
+function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, handleMasInfo, mostrarArchivadas }) {
   const fecha = new Date(pedido.fecha_entrega);
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
   const pedidoClass = pedido.observaciones ? "pedido con_observaciones" : "pedido";
   const reservaPagada = pedido.estado_pago === "PENDIENTE" ? "PENDIENTE" : "";
 
   console.log(pedido);
-  
+
   return (
     <div className={pedidoClass}>
       <div className="pedido__header">
@@ -16,7 +16,7 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         <strong>{reservaPagada}</strong>
         <strong>{pedido.horario}</strong>
         <strong>{fechaFormateada}</strong>
-        
+
       </div>
 
       <div className="pedido__content">
@@ -30,7 +30,7 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
             {pedido.telf_cliente}
           </a>
         </p>
-        
+
       </div>
 
       <div className="pedido__actions">
@@ -43,14 +43,16 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
           <i className="fa-solid fa-circle-info"></i>
         </button>
 
-        <button
-          className="btn btn-warning"
-          aria-label="Editar"
-          type="button"
-          onClick={() => handleEditar(pedido.id)}
-        >
-          <i className="fa-solid fa-pen-to-square"></i>
-        </button>
+        {!mostrarArchivadas && (
+          <button
+            className="btn btn-warning"
+            aria-label="Editar"
+            type="button"
+            onClick={() => handleEditar(pedido.id)}
+          >
+            <i className="fa-solid fa-pen-to-square"></i>
+          </button>
+        )}
 
         <button
           className="btn btn-success"
@@ -60,15 +62,17 @@ function PedidoCard({ pedido, handleEditar, handleArchivar, handleImprimir, hand
         >
           <i className="fa-solid fa-print"></i>
         </button>
+        {!mostrarArchivadas && (
+          <button
+            className="btn btn-success"
+            aria-label="Archivar"
+            type="button"
+            onClick={() => handleArchivar(pedido.id)}
+          >
+            Confirmar
+          </button>
+        )}
 
-        <button
-          className="btn btn-success"
-          aria-label="Archivar"
-          type="button"
-          onClick={() => handleArchivar(pedido.id)}
-        >
-          Confirmar
-        </button>
       </div>
     </div>
   );

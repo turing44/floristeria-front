@@ -4,14 +4,9 @@ import { httpGet, httpPost, httpPut, httpDelete } from "../cliente"
 
 const RUTA_RESERVAS = "/reservas"
 
-export async function listReservas() {
-    const response = await httpGet(RUTA_RESERVAS) 
-    console.log(response);
-    
-    const reservasMapeadas = response.reservas.map(mapReservaFromDto)
-    console.log(reservasMapeadas);
-    
-    return reservasMapeadas
+export async function listReservas({sort = "fecha_desc"} = {}) {
+    const dtos = await httpGet(RUTA_RESERVAS + "?" + new URLSearchParams({ sort }));
+    return dtos.reservas.map(mapReservaFromDto)
 }
 
 export async function getReserva(id) {
@@ -39,4 +34,10 @@ export async function updateReserva(id, reserva) {
 
 export async function deleteReserva(id) {
     return await httpDelete(RUTA_RESERVAS + "/" + id)
+}
+
+export async function listReservasArchivadas({ sort = "fecha_desc" } = {}) {
+    const dtos = await httpGet(RUTA_RESERVAS + "/archivadas?" + new URLSearchParams({ sort }));
+    console.log(dtos.reservas.map(mapReservaFromDto));
+    return dtos.reservas.map(mapReservaFromDto);
 }

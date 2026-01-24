@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "@/styles/SideBar.css"
 
-function SideBar({sort, setSort, setModo, tipo, handleMostrarPdf}) {
+function SideBar({sort, setSort, setModo, tipo, handleMostrarPdf, handleMostrarArchivadas, textoBotonArchivadas}) {
 
     const [idBuscar, setIdBuscar] = useState("");
 
@@ -48,6 +48,15 @@ function SideBar({sort, setSort, setModo, tipo, handleMostrarPdf}) {
         >
             Crear Nuevo
         </button>
+
+        <button
+            onClick={() => {
+                handleMostrarArchivadas()
+            }}
+        >
+            {textoBotonArchivadas}
+        </button>
+
     </aside>
     )
 }

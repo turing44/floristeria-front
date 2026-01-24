@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CrearMensajePage.css";
+import "@/styles/CrearMensajePage.css";
 import { obtenerMensajePdf } from "../api/services/mensajeApi";
 
 function CrearMensajePage() {
