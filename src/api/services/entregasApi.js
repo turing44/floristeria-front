@@ -14,26 +14,20 @@ export async function getEntrega(id) {
 }
 
 export async function createEntrega(entrega) {
-    try {
-        const dto = mapEntregaToDto(entrega);
-        const response = await httpPost(RUTA_ENTREGAS, dto );
-        return mapEntregaFromDto(response);
-    } catch (error) {
-        mostrarErroresBackend(error);
-        throw error;
-    }
+
+    const dto = mapEntregaToDto(entrega);
+    const response = await httpPost(RUTA_ENTREGAS, dto );
+    return mapEntregaFromDto(response);
+    
 }
 
 export async function updateEntrega(id, entrega) {
-    try {
-        const dto = mapEntregaToDto(entrega);
-        const response = await httpPut(RUTA_ENTREGAS + "/" + id, dto );
-        
-        return mapEntregaFromDto(response);
-    } catch (error) {
-        mostrarErroresBackend(error);
-        throw error;
-    }
+
+    const dto = mapEntregaToDto(entrega);
+    const response = await httpPut(RUTA_ENTREGAS + "/" + id, dto );
+    
+    return mapEntregaFromDto(response);
+    
 }
 
 export async function deleteEntrega(id) {
@@ -46,17 +40,6 @@ export async function getEntregasArchivadas() {
 
 export async function getEntregasArchivadasPorId(id) {
     return await httpGet(RUTA_ENTREGAS + "/archivadas/" + id);
-}
-
-function mostrarErroresBackend(error) {
-    if (error?.response?.status === 422) {
-        console.error("Errores de validación:");
-        console.table(error.response.data.errors);
-    } else if (error?.response) {
-        console.error("Error backend:", error.response.status, error.response.data);
-    } else {
-        console.error("Error de red:", error);
-    }
 }
 
 export async function listEntregasArchivadas({ sort = "fecha_desc" } = {}) {
