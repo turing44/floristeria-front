@@ -22,3 +22,18 @@
 
     padding: 10px;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+.form-container h1 {
+    color: white;
+    font-weight: bold;
+
+    margin-bottom: 1rem;
+}

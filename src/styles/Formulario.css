@@ -1,0 +1,92 @@
+form {
+    min-width: 70%;
+    margin: 0 auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Fieldset como tarjetas */
+
+fieldset {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px !important;
+  background: #ffffff;
+}
+
+legend {
+  padding: 0 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+/* Grid interno controlado */
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Campo */
+
+.campos > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Labels */
+
+label {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Inputs */
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Contador */
+
+span {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: right;
+}
+
+
+/* Responsive */
+
+@media (min-width: 640px) {
+  .campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .campos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

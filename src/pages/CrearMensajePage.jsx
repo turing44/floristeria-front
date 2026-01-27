@@ -23,17 +23,10 @@ function CrearMensajePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      
-      const blob = await obtenerMensajePdf(nombre, mensaje)
-  
-      const url = URL.createObjectURL(blob)
-  
-      window.open(url);
-    } catch (error) {
-      console.error("Error al obtener el PDF del mensaje:", error);
-    }
+    
+    const blob = await obtenerMensajePdf(nombre, mensaje)
+    const url = URL.createObjectURL(blob)
+    window.open(url);
   }
 
   return (
@@ -65,7 +58,7 @@ function CrearMensajePage() {
           value={mensaje}
           onInput={handleTextareaInput}
           maxLength={MAX_CHARS_MENSAJE}
-          rows={1}
+          rows={3}
         />
 
         <div className="char-counter">

@@ -12,3 +12,8 @@
     display: flex;
     gap: 0.5rem;
 }
+
+#sidebar-aside button[type=submit] {
+
+
+}

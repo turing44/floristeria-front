@@ -25,6 +25,7 @@ function SideBar({sort, setSort, setModo, tipo, handleMostrarPdf, handleMostrarA
                     placeholder='Introduce el ID' 
                     required
                     value={idBuscar}
+                    min={1}
                     onChange={(e) => setIdBuscar(e.target.value)}
                 />
 
