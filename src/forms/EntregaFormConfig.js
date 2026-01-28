@@ -13,7 +13,7 @@ export const entregaFormConfig = [
         required: true,
         autoComplete: "off",
         maxLength: 30,
-        regex: "^(?:Mª\s)?[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{1,13}(?:\s(?:de|del|la|los|las))?(?:\s[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{1,13}){1,4}$"
+        regex: '^(?:Mª\s)?[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{1,13}(?:\s(?:de|del|la|los|las))?(?:\s[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{1,13}){1,4}$',
       },
       {
         name: "telf_destinatario",
@@ -37,7 +37,7 @@ export const entregaFormConfig = [
         type: "text",
         required: true,
         inputMode: "number",
-        maxLength: 9,
+        maxLength: 5,
       },
     ]
   },
@@ -47,7 +47,7 @@ export const entregaFormConfig = [
     fields: [
         {
             name: "mensaje",
-            label: "Mensaje (texto)",
+            label: "Mensaje (opcional)",
             type: "textarea",
             rows: 4,
             required: false,

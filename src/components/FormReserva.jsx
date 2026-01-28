@@ -16,12 +16,12 @@ export const defaultReserva = {
     fecha_entrega: hoy(),
     cliente: "",
     telf_cliente: "",
-    horario: "",
+    horario: "INDIFERENTE",
     observaciones: "",
     destinatario: "",
     mensaje: "",
-    dinero_dejado_a_cuenta: "",
-    estado_pago: "PENDIENTE",
+    dinero_dejado_a_cuenta: 0,
+    estado_pago: "PAGADO",
 };
 
 export default function FormReserva({

@@ -29,8 +29,7 @@ export const PedidoFormConfig = [
         name: "fecha_entrega",
         label: "Fecha (Mes/Dia/Año)",
         type: "date",
-        required: true,
-        default: () => new Date().toISOString().slice(0, 10)
+        required: true
       },
       {
         name: "horario",
@@ -60,7 +59,9 @@ export const PedidoFormConfig = [
       {
         name: "precio",
         label: "Precio €",
-        type: "decimal",
+        type: "number",
+        min: 0,
+        step: 0.01,
         required: true,
         inputMode: "decimal",
         placeholder: ""

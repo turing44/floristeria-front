@@ -1,4 +1,4 @@
-export function CampoFormulario({ campo, value, onChange, error }) {
+export function CampoFormulario({ campo, value, onChange }) {
   const commonProps = {
     name: campo.name,
     value,
@@ -6,6 +6,8 @@ export function CampoFormulario({ campo, value, onChange, error }) {
     maxLength: campo.maxLength,
     autoComplete: campo.autoComplete,
     inputMode: campo.inputMode,
+    min: campo.min,
+    step: campo.step,
     default: campo.default,
     onChange: (e) => onChange(e),
   };
