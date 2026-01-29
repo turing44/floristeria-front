@@ -17,7 +17,7 @@ export const PedidoFormConfig = [
         required: true,
         autoComplete: "off",
         inputMode: "tel",
-        maxLength: 15
+        maxLength: 20
       }
     ]
   },
@@ -54,7 +54,7 @@ export const PedidoFormConfig = [
         type: "textarea",
         rows: 2,
         required: true,
-        maxLength: 120
+        maxLength: 150
       },
       {
         name: "precio",
