@@ -22,7 +22,7 @@ export const entregaFormConfig = [
         required: true,
         autoComplete: "off",
         inputMode: "tel",
-        maxLength: 15
+        maxLength: 20
       },
       {
         name: "direccion",
