@@ -20,7 +20,7 @@ function ReservasPage() {
         <br />
         <p>Destinatario: ${reserva.destinatario}</p>
         <p>Estado Pago: ${reserva.estado_pago}</p>
-        <p>Dinero a cuenta: ${reserva.dinero_dejado_a_cuenta} €</p>
+        <p>Dinero Pendiente: ${reserva.dinero_pendiente} €</p>
         ${reserva.mensaje !== null ? "<br /><p>Mensaje: " + reserva.mensaje + " </p>" : ""}
         ${reserva.observaciones !== null ? "<br /><p>Observaciones: " + reserva.observaciones + " </p>" : ""}
       `,

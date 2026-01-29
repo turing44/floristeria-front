@@ -16,11 +16,11 @@ export const defaultReserva = {
     fecha_entrega: hoy(),
     cliente: "",
     telf_cliente: "",
-    horario: "",
+    horario: "INDIFERENTE",
     observaciones: "",
     destinatario: "",
     mensaje: "",
-    dinero_dejado_a_cuenta: "",
+    dinero_pendiente: "",
     estado_pago: "PENDIENTE",
 };
 

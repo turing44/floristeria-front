@@ -17,8 +17,8 @@ export const ReservaFormConfig = [
         ]
       },
       {
-        name: "dinero_dejado_a_cuenta",
-        label: "Dinero que ya ha pagado",
+        name: "dinero_pendiente",
+        label: "Dinero Pendiente",
         type: "number",
         required: false,
         autoComplete: "off",
