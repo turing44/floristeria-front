@@ -7,6 +7,7 @@ export function mapReservaFromDto(dto) {
 
         dinero_pendiente: dto.dinero_pendiente ?? "",
         estado_pago: dto.estado_pago,
+        hora_recogida: dto.hora_recogida ?? "",
     }
 
     console.log(reserva);
@@ -21,6 +22,7 @@ export function mapReservaToDto(reserva) {
         
         dinero_pendiente: reserva.dinero_pendiente ?? null,
         estado_pago: reserva.estado_pago,
+        hora_recogida: reserva.hora_recogida ?? null,
     }
 
     return dto

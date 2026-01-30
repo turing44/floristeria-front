@@ -9,7 +9,6 @@ function MainPage({
     useHookArchivadas,
     create,
     update,
-    handleMasInfo,
     getPdf,
     FormComponent,
     tipo
@@ -134,7 +133,6 @@ function MainPage({
                         handleEditar={handleEditar}
                         handleArchivar={handleArchivar}
                         handleMostrarPdf={handleMostrarPdf}
-                        handleMasInfo={handleMasInfo}
                         handleRestaurar={handleRestaurar}
                         mostrarArchivadas={mostrarArchivadas}
                     />

@@ -54,6 +54,23 @@ export function handleApiError(error) {
     }
   }
 
+
+  if (status === 500) {
+    const message = data?.message || "Error en el servidor"
+
+    Swal.fire({
+      icon: "error",
+      title: "Error del servidor",
+      text: message
+    })
+
+    return {
+      type: "SERVER_ERROR",
+      status,
+      message
+    }
+  }
+
   // 4. Fallback silencioso
   return {
     type: "UNKNOWN",

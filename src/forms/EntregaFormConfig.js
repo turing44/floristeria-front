@@ -2,6 +2,30 @@ import { PedidoFormConfig } from "./PedidoFormConfig";
 
 export const entregaFormConfig = [
   ...PedidoFormConfig,
+
+  {
+    section: "Fecha",
+    fields: [
+      {
+        name: "fecha_entrega",
+        label: "Fecha (Mes/Dia/Año)",
+        type: "date",
+        required: true
+      },
+      {
+        name: "horario",
+        label: "Horario",
+        type: "select",
+        required: true,
+        options: [
+          { value: "INDIFERENTE", label: "INDIFERENTE" },
+          { value: "MAÑANA", label: "MAÑANA" },
+          { value: "TARDE", label: "TARDE" }
+        ]
+      }
+    ]
+  },
+
   
   {
     section: "Envio",
