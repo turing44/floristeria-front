@@ -29,7 +29,7 @@ export const entregaFormConfig = [
         label: "Dirección",
         type: "text",
         required: true,
-        maxLength: 40
+        maxLength: 60
       },
       {
         name: "codigo_postal",
