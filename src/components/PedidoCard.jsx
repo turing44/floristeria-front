@@ -102,12 +102,11 @@ function PedidoCard({
   return (
     <div className={pedidoClass}>
       <div className="pedido__header">
-        <strong>{pedido.id}</strong>
-        
+        <strong>{pedido.id}</strong>        
         {tipo === "entregas" 
         ? <strong>{pedido.horario}</strong> 
         : pedido.estado_pago === "PENDIENTE" 
-          ? <strong>{pedido.estado_pago}: {pedido.dinero_pendiente.toFixed(2)} €</strong> 
+          ? <strong>{pedido.estado_pago}: {pedido.dinero_pendiente} €</strong> 
           : <strong>{pedido.estado_pago}</strong>}
         
         
