@@ -28,21 +28,11 @@ export const ReservaFormConfig = [
   {
     section: "Pago",
     fields: [
-        {
-        name: "estado_pago",
-        label: "Estado del pago",
-        type: "select",
-        required: true,
-        options: [
-          { value: "PENDIENTE", label: "PENDIENTE" },
-          { value: "PAGADO", label: "PAGADO" },
-        ]
-      },
       {
         name: "dinero_pendiente",
-        label: "Dinero Pendiente",
+        label: "Dinero Pendiente (0 si está PAGADO)",
         type: "number",
-        required: false,
+        required: true,
         autoComplete: "off",
       },
     ]

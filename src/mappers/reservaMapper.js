@@ -6,7 +6,6 @@ export function mapReservaFromDto(dto) {
         ...mapPedidoFromDto(dto),
 
         dinero_pendiente: dto.dinero_pendiente ?? "",
-        estado_pago: dto.estado_pago,
         hora_recogida: dto.hora_recogida ?? "",
     }
 
@@ -21,7 +20,6 @@ export function mapReservaToDto(reserva) {
         ...mapPedidoToDto(reserva),
         
         dinero_pendiente: reserva.dinero_pendiente ?? null,
-        estado_pago: reserva.estado_pago,
         hora_recogida: reserva.hora_recogida ?? null,
     }
 

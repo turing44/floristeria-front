@@ -9,11 +9,8 @@ function handleReservaMasInfo(reserva) {
         <p>${((reserva.precio / 100) * 100).toFixed(2)} €</p>
         <br />
         <p>Cliente: ${reserva.cliente} <a href="tel:${reserva.telf_cliente}">${reserva.telf_cliente}</a></p>
-        <br />
-        <p>Estado Pago: ${reserva.estado_pago}</p>
-        ${reserva.estado_pago === "PENDIENTE" 
-          ? "<p>Dinero Pendiente: " + ((reserva.dinero_pendiente / 100) * 100).toFixed(2) +" €</p><p>Dinero Pagado: " + (((reserva.precio - reserva.dinero_pendiente) / 100) * 100).toFixed(2) +" €</p>" : ""}
-        
+        ${reserva.observaciones !== "" ? "<br /><p>Observaciones: " + reserva.observaciones + " </p>" : ""}
+
         
         `,
     });
@@ -42,13 +39,9 @@ function ReservaContent({reserva}) {
     <>
     <p>Producto: {reserva.producto}</p>
 
-    <p>Cliente: {reserva.cliente}</p>
-
     <p>
-      Teléfono cliente:{" "}
-      <a href={`tel:${reserva.telf_cliente}`}>
-        {reserva.telf_cliente}
-      </a>
+      Cliente: {reserva.cliente} 
+      <a href={`tel:${reserva.telf_cliente}`}> {reserva.telf_cliente}</a>
     </p>
 
     <p>Hora Recogida: {reserva.hora_recogida}h</p>
@@ -99,15 +92,18 @@ function PedidoCard({
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
   const pedidoClass = pedido.observaciones ? "pedido con_observaciones" : "pedido";
 
+  const estadoPago = pedido?.dinero_pendiente > 0 ? "Pediente: " + pedido?.dinero_pendiente.toFixed(2) : "PAGADO"
+
   return (
     <div className={pedidoClass}>
       <div className="pedido__header">
         <strong>{pedido.id}</strong>        
         {tipo === "entregas" 
         ? <strong>{pedido.horario}</strong> 
-        : pedido.estado_pago === "PENDIENTE" 
-          ? <strong>{pedido.estado_pago}: {pedido.dinero_pendiente} €</strong> 
-          : <strong>{pedido.estado_pago}</strong>}
+        : estadoPago === "PAGADO" 
+          ? <strong>{estadoPago}</strong>
+          : <strong style={{color: "red"}} >{estadoPago} €</strong>
+        }
         
         
         <strong>{fechaFormateada}</strong>

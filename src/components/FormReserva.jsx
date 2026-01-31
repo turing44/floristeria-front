@@ -20,8 +20,7 @@ export const defaultReserva = {
     observaciones: "",
     destinatario: "",
     mensaje: "",
-    dinero_pendiente: "",
-    estado_pago: "PENDIENTE",
+    dinero_pendiente: 0,
 };
 
 export default function FormReserva({
