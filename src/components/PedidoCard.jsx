@@ -94,7 +94,7 @@ function PedidoCard({
   const fechaFormateada = new Intl.DateTimeFormat("es-ES").format(fecha);
   const pedidoClass = pedido.observaciones ? "pedido con_observaciones" : "pedido";
 
-  const estadoPago = pedido?.dinero_pendiente > 0 ? "Pediente: " + pedido?.dinero_pendiente.toFixed(2) : "PAGADO"
+  const estadoPago = pedido?.dinero_pendiente > 0 ? "Pediente: " + (((pedido?.precio - pedido?.dinero_pendiente) / 100 )* 100).toFixed(2) : "PAGADO"
 
   return (
     <div className={pedidoClass}>

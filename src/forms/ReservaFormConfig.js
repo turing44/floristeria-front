@@ -30,7 +30,7 @@ export const ReservaFormConfig = [
     fields: [
       {
         name: "dinero_pendiente",
-        label: "Dinero Pendiente (0 si está PAGADO)",
+        label: "Dinero Pagado",
         type: "number",
         required: true,
         autoComplete: "off",
