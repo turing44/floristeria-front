@@ -44,7 +44,9 @@ function ReservaContent({reserva}) {
       <a href={`tel:${reserva.telf_cliente}`}> {reserva.telf_cliente}</a>
     </p>
 
-    <p>Hora Recogida: {reserva.hora_recogida}h</p>
+    {reserva.hora_recogida === "" ? "" 
+    : <p>Hora Recogida: {reserva.hora_recogida}h</p>
+    }
 
     </>
   )
