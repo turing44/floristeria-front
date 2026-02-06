@@ -6,6 +6,7 @@ export function useReservas({ sort }) {
     const [reservas, setReservas] = useState([])
 
     function refetch() {
+        importarFormularios();
         return listReservas(sort).then(setReservas)
     }
 

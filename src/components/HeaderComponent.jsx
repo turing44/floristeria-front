@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import LinkFormulario from './LinkFormulario'
 
 function HeaderComponent() {
 
@@ -50,6 +51,10 @@ function HeaderComponent() {
                 >
                   Crear Mensaje
                 </NavLink>
+              </li>
+              
+              <li className="nav-item">
+                <LinkFormulario />
               </li>
 
         

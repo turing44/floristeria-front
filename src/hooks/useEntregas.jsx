@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { deleteEntrega, listEntregas, restaurarEntrega } from "../api/services/entregasApi";
+import { importarFormularios } from "../api/services/formularioAPI";
 
 
 export function useEntregas({sort}) {
     const [entregas, setEntregas] = useState([])
     
     function refetch() {
+        importarFormularios();
         return listEntregas({sort}).then(setEntregas)
     }
 

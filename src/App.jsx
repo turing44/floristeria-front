@@ -6,6 +6,7 @@ import EntregasPage from './pages/EntregasPage'
 import HeaderComponent from './components/HeaderComponent'
 import ReservasPage from './pages/ReservasPage'
 import CrearMensajePage from './pages/CrearMensajePage'
+import LinkFormulario from './components/LinkFormulario'
 
 function App() {
   return (
