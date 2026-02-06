@@ -2,6 +2,30 @@ import { PedidoFormConfig } from "./PedidoFormConfig";
 
 export const entregaFormConfig = [
   ...PedidoFormConfig,
+
+  {
+    section: "Fecha",
+    fields: [
+      {
+        name: "fecha_entrega",
+        label: "Fecha (Mes/Dia/Año)",
+        type: "date",
+        required: true
+      },
+      {
+        name: "horario",
+        label: "Horario",
+        type: "select",
+        required: true,
+        options: [
+          { value: "INDIFERENTE", label: "INDIFERENTE" },
+          { value: "MAÑANA", label: "MAÑANA" },
+          { value: "TARDE", label: "TARDE" }
+        ]
+      }
+    ]
+  },
+
   
   {
     section: "Envio",
@@ -29,7 +53,7 @@ export const entregaFormConfig = [
         label: "Dirección",
         type: "text",
         required: true,
-        maxLength: 40
+        maxLength: 60
       },
       {
         name: "codigo_postal",
@@ -51,7 +75,7 @@ export const entregaFormConfig = [
             type: "textarea",
             rows: 4,
             required: false,
-            maxLength: 255,
+            maxLength: 430,
             
 
         }

@@ -7,6 +7,7 @@ export function CampoFormulario({ campo, value, onChange }) {
     autoComplete: campo.autoComplete,
     inputMode: campo.inputMode,
     min: campo.min,
+    max: campo.max,
     step: campo.step,
     default: campo.default,
     onChange: (e) => onChange(e),

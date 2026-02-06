@@ -9,22 +9,6 @@ import MainPage from '../components/MainPage'
 import { useEntregasArchivadas } from '../hooks/useEntregasArchivadas'
 
 function EntregasPage() {
-    const handleMasInfo = (entrega) => {
-        Swal.fire({
-            title: entrega.id,
-            html: `
-                <p>${entrega.precio} €</p> 
-                <br />
-                <p>Cliente: ${entrega.cliente}</p>
-                <p>Cliente Telf: <a href="tel:${entrega.telf_cliente}">${entrega.telf_cliente}</a></p> 
-                <br />
-                <p>Destinatario: ${entrega.destinatario}</p>
-                <p>Destinatario Telf: <a href="tel:${entrega.telf_destinatario}">${entrega.telf_destinatario}</a></p>  
-                ${entrega.mensaje !== null ? "<br /><p>Mensaje: " + entrega.mensaje + " </p>" : ""}
-                ${entrega.observaciones !== null ? "<br /><p>Observaciones: " + entrega.observaciones + " </p>" : ""}
-              `,
-        });
-    }
 
     return (
         <MainPage
@@ -34,7 +18,6 @@ function EntregasPage() {
             update={updateEntrega}
             getPdf={getEntregaPdf}
             FormComponent={FormEntrega}
-            handleMasInfo={handleMasInfo}
             tipo="entregas"
         />
     )
