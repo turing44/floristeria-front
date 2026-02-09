@@ -75,7 +75,7 @@ export const entregaFormConfig = [
             type: "textarea",
             rows: 4,
             required: false,
-            maxLength: 255,
+            maxLength: 500,
             
 
         }

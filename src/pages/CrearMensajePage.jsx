@@ -4,7 +4,7 @@ import { obtenerMensajePdf } from "../api/services/mensajeApi";
 
 function CrearMensajePage() {
   const MAX_CHARS_NOMBRE = 30;
-  const MAX_CHARS_MENSAJE = 280;
+  const MAX_CHARS_MENSAJE = 400;
 
   const [nombre, setNombre] = useState("")
   const [mensaje, setMensaje] = useState("");
@@ -58,7 +58,7 @@ function CrearMensajePage() {
           value={mensaje}
           onInput={handleTextareaInput}
           maxLength={MAX_CHARS_MENSAJE}
-          rows={3}
+          rows={5}
         />
 
         <div className="char-counter">
