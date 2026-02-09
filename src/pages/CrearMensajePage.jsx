@@ -4,7 +4,7 @@ import { obtenerMensajePdf } from "../api/services/mensajeApi";
 
 function CrearMensajePage() {
   const MAX_CHARS_NOMBRE = 30;
-  const MAX_CHARS_MENSAJE = 400;
+  const MAX_CHARS_MENSAJE = 840;
 
   const [nombre, setNombre] = useState("")
   const [mensaje, setMensaje] = useState("");
