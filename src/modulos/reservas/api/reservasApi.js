@@ -2,44 +2,57 @@ import {
   deleteJson,
   getBlob,
   getJson,
+  normalizarEnvelope,
   postJson,
   putJson,
 } from "@/modulos/compartido/api/clienteApi";
 
-export async function listarReservas(orden = "fecha_desc") {
-  const respuesta = await getJson(`/reservas?${new URLSearchParams({ ordenar: orden })}`);
-  return respuesta.data;
+function normalizarLista(respuesta) {
+  const envelope = normalizarEnvelope(respuesta);
+
+  return {
+    data: envelope.data ?? [],
+    meta: envelope.meta ?? {},
+  };
 }
 
-export async function listarReservasArchivadas() {
-  const respuesta = await getJson("/reservas/archivadas");
-  return respuesta.data;
+export async function listarReservas(filtros = {}, opciones = {}) {
+  return normalizarLista(
+    await getJson("/reservas", {
+      query: filtros,
+      signal: opciones.signal,
+    })
+  );
 }
 
-export async function obtenerReserva(id) {
-  const respuesta = await getJson(`/reservas/${id}`);
-  return respuesta.data;
+export function listarReservasArchivadas(filtros = {}, opciones = {}) {
+  return listarReservas({ ...filtros, archivados: true }, opciones);
 }
 
-export async function crearReserva(datos) {
-  const respuesta = await postJson("/reservas", datos);
-  return respuesta.data;
+export async function obtenerReserva(id, opciones = {}) {
+  return normalizarEnvelope(
+    await getJson(`/reservas/${id}`, {
+      signal: opciones.signal,
+    })
+  );
 }
 
-export async function actualizarReserva(id, datos) {
-  const respuesta = await putJson(`/reservas/${id}`, datos);
-  return respuesta.data;
+export async function crearReserva(datos, opciones = {}) {
+  return normalizarEnvelope(await postJson("/reservas", datos, opciones));
 }
 
-export function archivarReserva(id) {
-  return deleteJson(`/reservas/${id}`);
+export async function actualizarReserva(id, datos, opciones = {}) {
+  return normalizarEnvelope(await putJson(`/reservas/${id}`, datos, opciones));
 }
 
-export async function restaurarReserva(id) {
-  const respuesta = await postJson(`/reservas/restaurar/${id}`);
-  return respuesta.data;
+export async function archivarReserva(id, opciones = {}) {
+  return normalizarEnvelope(await deleteJson(`/reservas/${id}`, opciones));
 }
 
-export function obtenerPdfReserva(id) {
-  return getBlob(`/reservas/pdf/${id}`);
+export async function restaurarReserva(id, opciones = {}) {
+  return normalizarEnvelope(await postJson(`/reservas/restaurar/${id}`, undefined, opciones));
+}
+
+export function obtenerPdfReserva(id, opciones = {}) {
+  return getBlob(`/reservas/pdf/${id}`, opciones);
 }

@@ -1,17 +1,13 @@
-
 #crear-mensaje-form {
-    background: var(--color-primario);
-
-    border-radius: var(--borde);
-
-    max-width: 520px;
-    max-height: fit-content;
-    margin: 0 auto;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    
+  background: var(--color-primario);
+  border-radius: var(--borde);
+  max-width: 520px;
+  max-height: fit-content;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 #crear-mensaje-form h1 {
@@ -56,7 +52,6 @@ button {
   cursor: pointer;
 }
 
-/* Mobile first: ajustes táctiles */
 @media (max-width: 480px) {
   #crear-mensaje-form {
     padding: 16px;

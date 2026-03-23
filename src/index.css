@@ -1,17 +1,55 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-* , *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 :root {
-    --color-primario: rgb(255, 255, 255);
-    --borde: 12px
+  --color-lienzo: #f3f7f3;
+  --color-primario: #ffffff;
+  --color-panel: #ffffff;
+  --color-superficie: #f7faf7;
+  --color-superficie-secundaria: #edf3ed;
+  --color-salvia: #2f5d3a;
+  --color-salvia-oscuro: #23452b;
+  --color-salvia-claro: #dce9dd;
+  --color-acento: #4f7a5b;
+  --color-texto: #1f2a22;
+  --color-texto-suave: #5f6d63;
+  --color-borde: #d9e5db;
+  --color-borde-fuerte: #bfd0c2;
+  --sombra-panel: 0 8px 24px rgba(24, 44, 29, 0.05);
+  --sombra-panel-fuerte: 0 12px 28px rgba(24, 44, 29, 0.08);
+  --fuente-titulos: "Source Sans 3", "Segoe UI", sans-serif;
+  --fuente-texto: "Source Sans 3", "Segoe UI", sans-serif;
 }
 
 body {
-    background-color: rgb(75, 92, 77) !important;
+  min-width: 320px;
+  background: var(--color-lienzo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }

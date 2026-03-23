@@ -1,60 +1,48 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
+import "./Header.css";
 
 function HeaderComponent() {
   return (
-    <header className='w-100 mb-3'>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <NavLink to="/" className="navbar-brand">
-            <img width={80} src="/logoFloristeria.png" alt="logo floristería" />
+    <header className="app-header">
+      <nav className="app-header__nav">
+        <NavLink to="/" className="app-header__marca">
+          <img src="/logoFloristeria.png" alt="logo floristería" />
+          <div>
+            <strong>Floristería Antonia Bueno</strong>
+          </div>
+        </NavLink>
+
+        <div className="app-header__links">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `app-header__link ${isActive ? "app-header__link--activo" : ""}`
+            }
+          >
+            Entregas
           </NavLink>
 
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <NavLink
+            to="/reservas"
+            className={({ isActive }) =>
+              `app-header__link ${isActive ? "app-header__link--activo" : ""}`
+            }
+          >
+            Reservas
+          </NavLink>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-              <li className="nav-item">
-                <NavLink
-                  to="/reservas"
-                  className={({ isActive }) =>
-                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
-                  }
-                >
-                  Reservas
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
-                  }
-                >
-                  Entregas
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  to="/crear-mensaje"
-                  className={({ isActive }) =>
-                    `btn nav-link ${isActive ? 'active fw-bold text-primary' : 'text-dark'}`
-                  }
-                >
-                  Crear Mensaje
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+          <NavLink
+            to="/crear-mensaje"
+            className={({ isActive }) =>
+              `app-header__link ${isActive ? "app-header__link--activo" : ""}`
+            }
+          >
+            Crear mensaje
+          </NavLink>
         </div>
       </nav>
     </header>
-  )
+  );
 }
 
-export default HeaderComponent
+export default HeaderComponent;

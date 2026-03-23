@@ -2,44 +2,57 @@ import {
   deleteJson,
   getBlob,
   getJson,
+  normalizarEnvelope,
   postJson,
   putJson,
 } from "@/modulos/compartido/api/clienteApi";
 
-export async function listarEntregas(orden = "fecha_desc") {
-  const respuesta = await getJson(`/entregas?${new URLSearchParams({ ordenar: orden })}`);
-  return respuesta.data;
+function normalizarLista(respuesta) {
+  const envelope = normalizarEnvelope(respuesta);
+
+  return {
+    data: envelope.data ?? [],
+    meta: envelope.meta ?? {},
+  };
 }
 
-export async function listarEntregasArchivadas() {
-  const respuesta = await getJson("/entregas/archivadas");
-  return respuesta.data;
+export async function listarEntregas(filtros = {}, opciones = {}) {
+  return normalizarLista(
+    await getJson("/entregas", {
+      query: filtros,
+      signal: opciones.signal,
+    })
+  );
 }
 
-export async function obtenerEntrega(id) {
-  const respuesta = await getJson(`/entregas/${id}`);
-  return respuesta.data;
+export function listarEntregasArchivadas(filtros = {}, opciones = {}) {
+  return listarEntregas({ ...filtros, archivados: true }, opciones);
 }
 
-export async function crearEntrega(datos) {
-  const respuesta = await postJson("/entregas", datos);
-  return respuesta.data;
+export async function obtenerEntrega(id, opciones = {}) {
+  return normalizarEnvelope(
+    await getJson(`/entregas/${id}`, {
+      signal: opciones.signal,
+    })
+  );
 }
 
-export async function actualizarEntrega(id, datos) {
-  const respuesta = await putJson(`/entregas/${id}`, datos);
-  return respuesta.data;
+export async function crearEntrega(datos, opciones = {}) {
+  return normalizarEnvelope(await postJson("/entregas", datos, opciones));
 }
 
-export function archivarEntrega(id) {
-  return deleteJson(`/entregas/${id}`);
+export async function actualizarEntrega(id, datos, opciones = {}) {
+  return normalizarEnvelope(await putJson(`/entregas/${id}`, datos, opciones));
 }
 
-export async function restaurarEntrega(id) {
-  const respuesta = await postJson(`/entregas/restaurar/${id}`);
-  return respuesta.data;
+export async function archivarEntrega(id, opciones = {}) {
+  return normalizarEnvelope(await deleteJson(`/entregas/${id}`, opciones));
 }
 
-export function obtenerPdfEntrega(id) {
-  return getBlob(`/entregas/pdf/${id}`);
+export async function restaurarEntrega(id, opciones = {}) {
+  return normalizarEnvelope(await postJson(`/entregas/restaurar/${id}`, undefined, opciones));
+}
+
+export function obtenerPdfEntrega(id, opciones = {}) {
+  return getBlob(`/entregas/pdf/${id}`, opciones);
 }

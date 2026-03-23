@@ -1,0 +1,95 @@
+.formulario-contrato form {
+  display: grid;
+  gap: 1rem;
+}
+
+.formulario-contrato__errores {
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: #f7f0ef;
+  color: #7b3d37;
+  border: 1px solid #e7d2cf;
+  font-weight: 600;
+}
+
+fieldset {
+  margin: 0;
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 0.95rem !important;
+  background: var(--color-superficie);
+}
+
+legend {
+  padding: 0 0.5rem;
+  color: var(--color-salvia-oscuro);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.campos {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.formulario-contrato__campo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.formulario-contrato__campo label {
+  color: var(--color-texto-suave);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.formulario-contrato__obligatorio {
+  color: var(--color-salvia);
+}
+
+.campo-contrato {
+  display: grid;
+  gap: 0.35rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.72rem 0.82rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-borde);
+  background: #fff;
+  color: var(--color-texto);
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-salvia);
+  box-shadow: 0 0 0 3px rgba(47, 93, 58, 0.1);
+}
+
+.campo-contrato__contador {
+  color: var(--color-texto-suave);
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.campo-contrato__error {
+  margin: 0;
+  color: #7b3d37;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+@media (min-width: 720px) {
+  .campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

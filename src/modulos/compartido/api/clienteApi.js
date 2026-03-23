@@ -1,5 +1,22 @@
 const URL_API = import.meta.env.VITE_API_URL;
 
+function construirUrl(path, query) {
+  const params = new URLSearchParams();
+
+  Object.entries(query ?? {}).forEach(([clave, valor]) => {
+    if (valor === undefined || valor === null || valor === "" || valor === false) {
+      return;
+    }
+
+    params.append(clave, String(valor));
+  });
+
+  const queryString = params.toString();
+  const separador = queryString ? (path.includes("?") ? "&" : "?") : "";
+
+  return `${URL_API}${path}${separador}${queryString}`;
+}
+
 async function construirError(response) {
   const contentType = response.headers.get("content-type") || "";
   let data = null;
@@ -35,19 +52,22 @@ function extraerMensajeValidacion(errors) {
     .join("\n");
 }
 
-async function request(path, { method = "GET", body, responseType = "json" } = {}) {
+async function request(
+  path,
+  { method = "GET", body, query, responseType = "json", signal } = {}
+) {
   const headers = {
     Accept: responseType === "blob" ? "application/pdf" : "application/json",
   };
 
-  const init = { method, headers };
+  const init = { method, headers, signal };
 
   if (body !== undefined) {
     headers["Content-Type"] = "application/json";
     init.body = JSON.stringify(body);
   }
 
-  const response = await fetch(`${URL_API}${path}`, init);
+  const response = await fetch(construirUrl(path, query), init);
 
   if (!response.ok) {
     throw await construirError(response);
@@ -64,26 +84,44 @@ async function request(path, { method = "GET", body, responseType = "json" } = {
   return response.json();
 }
 
-export function getJson(path) {
-  return request(path);
+export function normalizarEnvelope(respuesta) {
+  if (
+    respuesta &&
+    typeof respuesta === "object" &&
+    ("data" in respuesta || "meta" in respuesta)
+  ) {
+    return {
+      data: respuesta.data ?? null,
+      meta: respuesta.meta ?? null,
+    };
+  }
+
+  return {
+    data: respuesta ?? null,
+    meta: null,
+  };
 }
 
-export function postJson(path, body) {
-  return request(path, { method: "POST", body });
+export function getJson(path, options = {}) {
+  return request(path, options);
 }
 
-export function putJson(path, body) {
-  return request(path, { method: "PUT", body });
+export function postJson(path, body, options = {}) {
+  return request(path, { ...options, method: "POST", body });
 }
 
-export function deleteJson(path) {
-  return request(path, { method: "DELETE" });
+export function putJson(path, body, options = {}) {
+  return request(path, { ...options, method: "PUT", body });
 }
 
-export function getBlob(path) {
-  return request(path, { responseType: "blob" });
+export function deleteJson(path, options = {}) {
+  return request(path, { ...options, method: "DELETE" });
 }
 
-export function postBlob(path, body) {
-  return request(path, { method: "POST", body, responseType: "blob" });
+export function getBlob(path, options = {}) {
+  return request(path, { ...options, responseType: "blob" });
+}
+
+export function postBlob(path, body, options = {}) {
+  return request(path, { ...options, method: "POST", body, responseType: "blob" });
 }

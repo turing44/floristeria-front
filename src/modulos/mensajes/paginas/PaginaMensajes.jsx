@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "@/styles/CrearMensajePage.css";
+import "./PaginaMensajes.css";
 import { generarPdfMensaje } from "@/modulos/mensajes/api/mensajesApi";
 import {
   cerrarAlerta,
@@ -21,8 +21,8 @@ export default function PaginaMensajes() {
     try {
       mostrarCargandoPdf();
       const blob = await generarPdfMensaje({
-        nombre_mensaje: nombre,
-        texto_mensaje: mensaje,
+        nombre_destinatario: nombre,
+        mensaje_tarjeta: mensaje,
       });
       cerrarAlerta();
       abrirPdfEnNuevaVentana(blob);
