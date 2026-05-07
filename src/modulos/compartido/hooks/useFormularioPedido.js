@@ -12,6 +12,7 @@ export function useFormularioPedido({
   const [valores, setValores] = useState({});
   const [valoresIniciales, setValoresIniciales] = useState({});
   const [errores, setErrores] = useState({});
+  const [errorCarga, setErrorCarga] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [enviando, setEnviando] = useState(false);
 
@@ -20,6 +21,7 @@ export function useFormularioPedido({
 
     async function cargarFormulario() {
       setCargando(true);
+      setErrorCarga(null);
 
       try {
         const [contratoRemoto, respuestaRegistro] = await Promise.all([
@@ -40,6 +42,12 @@ export function useFormularioPedido({
         setValores(valoresCargados);
         setValoresIniciales(valoresCargados);
         setErrores({});
+        setErrorCarga(null);
+      } catch (error) {
+        if (!cancelado) {
+          setContrato(null);
+          setErrorCarga(error);
+        }
       } finally {
         if (!cancelado) {
           setCargando(false);
@@ -100,6 +108,7 @@ export function useFormularioPedido({
     contrato,
     valores,
     errores,
+    errorCarga,
     cargando,
     enviando,
     sucio,

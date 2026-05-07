@@ -1,16 +1,14 @@
 import {
-  actualizarReserva,
   archivarReserva,
-  crearReserva,
   listarReservas,
   obtenerPdfReserva,
   restaurarReserva,
 } from "@/modulos/reservas/api/reservasApi";
-import FormularioReserva from "@/modulos/reservas/componentes/FormularioReserva";
 import TarjetaReserva from "@/modulos/reservas/componentes/TarjetaReserva";
-import DetalleReserva from "@/modulos/reservas/componentes/detalle/DetalleReserva";
 import EspacioPedidos from "@/modulos/compartido/componentes/pedidos/EspacioPedidos";
 import { usePaginaPedidosEscritorio } from "@/modulos/compartido/hooks/usePaginaPedidosEscritorio";
+import { mostrarDetallePedido } from "@/modulos/compartido/utilidades/alertas";
+import { construirHtmlDetalleReserva } from "@/modulos/reservas/utilidades/htmlDetalleReserva";
 
 const OPCIONES_ORDEN = [
   { value: "fecha_desc", label: "Fecha descendente" },
@@ -20,8 +18,6 @@ const OPCIONES_ORDEN = [
 export default function PaginaReservas() {
   const pagina = usePaginaPedidosEscritorio({
     listarPedidos: listarReservas,
-    crearPedido: crearReserva,
-    actualizarPedido: actualizarReserva,
     archivarPedido: archivarReserva,
     restaurarPedido: restaurarReserva,
     obtenerPdf: obtenerPdfReserva,
@@ -38,12 +34,31 @@ export default function PaginaReservas() {
     },
   });
 
+  function alAbrirDetalle(reserva, { archivados, alEditar, alImprimir, alArchivar, alRestaurar }) {
+    const acciones = [
+      ...(!archivados
+        ? [{ id: "editar", texto: "Editar", tono: "secundario", onClick: alEditar }]
+        : []),
+      { id: "imprimir", texto: "Imprimir", tono: "primario", onClick: alImprimir },
+      archivados
+        ? { id: "restaurar", texto: "Restaurar", tono: "secundario", onClick: alRestaurar }
+        : { id: "archivar", texto: "Archivar", tono: "peligro", onClick: alArchivar },
+    ];
+
+    mostrarDetallePedido({
+      html: construirHtmlDetalleReserva(reserva),
+      acciones,
+    });
+  }
+
   return (
     <EspacioPedidos
       titulo="Reservas"
       descripcion="Recogidas en tienda"
       pagina={pagina}
       opcionesOrden={OPCIONES_ORDEN}
+      rutaCrear="/reservas/nueva"
+      rutaEditar={(id) => `/reservas/${id}/editar`}
       accionesRapidas={[
         {
           texto: "Pendiente de pago",
@@ -55,17 +70,7 @@ export default function PaginaReservas() {
       renderTarjeta={({ pedido, ...acciones }) => (
         <TarjetaReserva key={pedido.id} pedido={pedido} {...acciones} />
       )}
-      renderDetalle={({ pedido, ...acciones }) => (
-        <DetalleReserva key={pedido.id} reserva={pedido} {...acciones} />
-      )}
-      renderFormulario={({ idEditar, alGuardar, alCancelar }) => (
-        <FormularioReserva
-          key={idEditar ?? "crear-reserva"}
-          idEditar={idEditar}
-          alGuardar={alGuardar}
-          alCancelar={alCancelar}
-        />
-      )}
+      alAbrirDetalle={alAbrirDetalle}
     />
   );
 }

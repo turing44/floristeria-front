@@ -10,21 +10,23 @@
 }
 
 :root {
-  --color-lienzo: #f3f7f3;
+  --color-lienzo: #f4f5f6;
   --color-primario: #ffffff;
   --color-panel: #ffffff;
-  --color-superficie: #f7faf7;
-  --color-superficie-secundaria: #edf3ed;
+  --color-superficie: #fafafa;
+  --color-superficie-secundaria: #eef1ee;
   --color-salvia: #2f5d3a;
-  --color-salvia-oscuro: #23452b;
-  --color-salvia-claro: #dce9dd;
+  --color-salvia-oscuro: #1f3f27;
+  --color-salvia-claro: #e5ede6;
   --color-acento: #4f7a5b;
-  --color-texto: #1f2a22;
-  --color-texto-suave: #5f6d63;
-  --color-borde: #d9e5db;
-  --color-borde-fuerte: #bfd0c2;
-  --sombra-panel: 0 8px 24px rgba(24, 44, 29, 0.05);
-  --sombra-panel-fuerte: 0 12px 28px rgba(24, 44, 29, 0.08);
+  --color-texto: #15201a;
+  --color-texto-suave: #586660;
+  --color-borde: #d6dbd8;
+  --color-borde-fuerte: #b3bcb6;
+  --sombra-panel: 0 1px 2px rgba(20, 30, 24, 0.04);
+  --sombra-panel-fuerte: 0 4px 12px rgba(20, 30, 24, 0.08);
+  --radio: 8px;
+  --radio-grande: 10px;
   --fuente-titulos: "Source Sans 3", "Segoe UI", sans-serif;
   --fuente-texto: "Source Sans 3", "Segoe UI", sans-serif;
 }
@@ -34,7 +36,9 @@ body {
   background: var(--color-lienzo);
   color: var(--color-texto);
   font-family: var(--fuente-texto);
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 
 button,

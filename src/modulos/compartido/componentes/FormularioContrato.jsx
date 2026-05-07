@@ -41,6 +41,13 @@ export default function FormularioContrato({
     <div className="formulario-contrato">
       <div className="formulario-contrato__cabecera">
         <div>
+          <button
+            type="button"
+            className="formulario-contrato__volver"
+            onClick={alCancelar}
+          >
+            ← Volver al listado
+          </button>
           <p className="formulario-contrato__eyebrow">{titulo}</p>
           <h2>{contrato.operacion === "actualizar" ? "Editar pedido" : "Nuevo pedido"}</h2>
         </div>

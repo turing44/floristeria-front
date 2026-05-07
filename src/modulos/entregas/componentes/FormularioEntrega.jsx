@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { obtenerContratoEntrega } from "@/modulos/contratos/api/contratosApi";
 import { obtenerEntrega } from "@/modulos/entregas/api/entregasApi";
 import FormularioContrato from "@/modulos/compartido/componentes/FormularioContrato";
@@ -12,6 +13,12 @@ export default function FormularioEntrega({ idEditar, alGuardar, alCancelar }) {
     alGuardar,
   });
 
+  useEffect(() => {
+    if (formulario.errorCarga) {
+      mostrarError(formulario.errorCarga, "No se pudo cargar el formulario de entrega");
+    }
+  }, [formulario.errorCarga]);
+
   async function guardar(imprimir) {
     try {
       await formulario.enviar({ imprimir });
@@ -21,6 +28,15 @@ export default function FormularioEntrega({ idEditar, alGuardar, alCancelar }) {
   }
 
   if (formulario.cargando || !formulario.contrato) {
+    if (formulario.errorCarga) {
+      return (
+        <div className="panel-pedidos__vacio">
+          No se pudo cargar el formulario. Revisa la conexion con la API y la
+          configuracion del despliegue.
+        </div>
+      );
+    }
+
     return <div className="panel-pedidos__vacio">Cargando formulario...</div>;
   }
 

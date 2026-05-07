@@ -1,64 +1,93 @@
-#crear-mensaje-form {
-  background: var(--color-primario);
-  border-radius: var(--borde);
-  max-width: 520px;
-  max-height: fit-content;
+.pagina-mensajes {
+  max-width: 720px;
   margin: 0 auto;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
-#crear-mensaje-form h1 {
+.pagina-mensajes__form {
+  background: #ffffff;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-grande);
+  box-shadow: var(--sombra-panel);
+  padding: 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.pagina-mensajes__cabecera {
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.pagina-mensajes__cabecera h1 {
   margin: 0;
+  font-family: var(--fuente-titulos);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-texto);
 }
 
-.form-group {
+.pagina-mensajes__eyebrow {
+  margin-bottom: 0.2rem;
+  color: var(--color-salvia);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.pagina-mensajes__grupo {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.35rem;
 }
 
-input,
-textarea {
+.pagina-mensajes__grupo label {
+  color: var(--color-texto);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.pagina-mensajes__grupo input,
+.pagina-mensajes__grupo textarea {
   width: 100%;
-  padding: 10px 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--radio);
+  border: 1px solid var(--color-borde);
+  background: #fff;
+  color: var(--color-texto);
+  font-size: 0.95rem;
   font-family: inherit;
 }
 
-textarea {
-  resize: none;
-  overflow: hidden;
-  min-height: 44px;
-  max-height: 200px;
+.pagina-mensajes__grupo textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
-.char-counter {
+.pagina-mensajes__grupo input:focus,
+.pagina-mensajes__grupo textarea:focus {
+  outline: none;
+  border-color: var(--color-salvia);
+  box-shadow: 0 0 0 3px rgba(47, 93, 58, 0.12);
+}
+
+.pagina-mensajes__contador {
   align-self: flex-end;
-  font-size: 13px;
-  color: #666;
+  font-size: 0.78rem;
+  color: var(--color-texto-suave);
 }
 
-button {
-  margin-top: 10px;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+.pagina-mensajes__acciones {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-borde);
 }
 
-@media (max-width: 480px) {
-  #crear-mensaje-form {
-    padding: 16px;
-  }
-
-  button {
-    font-size: 18px;
-    padding: 14px;
+@media (max-width: 600px) {
+  .pagina-mensajes__form {
+    padding: 1.1rem 1rem;
   }
 }

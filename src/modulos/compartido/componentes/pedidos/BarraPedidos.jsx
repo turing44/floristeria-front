@@ -30,8 +30,6 @@ export default function BarraPedidos({
   inputBusquedaRef,
   alCambiarFiltro,
   alCrear,
-  alImprimirSeleccionado,
-  haySeleccion,
   accionesRapidas = [],
 }) {
   const resumen = meta.resumen ?? {};
@@ -55,17 +53,8 @@ export default function BarraPedidos({
         </div>
 
         <div className="pedidos-barra__acciones">
-          <button type="button" className="boton-secundario" onClick={alCrear}>
+          <button type="button" className="boton-principal" onClick={alCrear}>
             Nuevo pedido
-          </button>
-
-          <button
-            type="button"
-            className="boton-principal"
-            onClick={alImprimirSeleccionado}
-            disabled={!haySeleccion}
-          >
-            Imprimir seleccionado
           </button>
         </div>
       </div>
@@ -82,7 +71,7 @@ export default function BarraPedidos({
           type="search"
           value={filtros.buscar}
           onChange={(event) => alCambiarFiltro("buscar", event.target.value)}
-          placeholder="Buscar por ID, cliente, telefono o direccion"
+          placeholder="Buscar por ID, cliente, teléfono o dirección"
         />
 
         <input
@@ -114,12 +103,6 @@ export default function BarraPedidos({
           activa={filtros.archivados}
           texto="Archivados"
           onClick={() => alCambiarFiltro("archivados", !filtros.archivados)}
-        />
-
-        <ChipFiltro
-          activa={filtros.solo_observaciones}
-          texto="Con observaciones"
-          onClick={() => alCambiarFiltro("solo_observaciones", !filtros.solo_observaciones)}
         />
 
         {accionesRapidas.map((accion) => (

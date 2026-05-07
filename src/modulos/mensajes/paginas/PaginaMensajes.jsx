@@ -33,44 +33,48 @@ export default function PaginaMensajes() {
   }
 
   return (
-    <form onSubmit={handleSubmit} id="crear-mensaje-form">
-      <h1>Crear mensaje</h1>
+    <div className="pagina-mensajes">
+      <form onSubmit={handleSubmit} className="pagina-mensajes__form">
+        <div className="pagina-mensajes__cabecera">
+          <p className="pagina-mensajes__eyebrow">Mensajes</p>
+          <h1>Crear mensaje</h1>
+        </div>
 
-      <div className="form-group">
-        <label>Nombre</label>
-        <input
-          type="text"
-          required
-          value={nombre}
-          onChange={(event) => setNombre(event.target.value)}
-          maxLength={MAX_CHARS_NOMBRE}
-        />
-
-        <div className="char-counter">
-          <strong>
+        <div className="pagina-mensajes__grupo">
+          <label htmlFor="mensaje-nombre">Nombre del destinatario</label>
+          <input
+            id="mensaje-nombre"
+            type="text"
+            required
+            value={nombre}
+            onChange={(event) => setNombre(event.target.value)}
+            maxLength={MAX_CHARS_NOMBRE}
+          />
+          <div className="pagina-mensajes__contador">
             {nombre.length} / {MAX_CHARS_NOMBRE}
-          </strong>
+          </div>
         </div>
-      </div>
 
-      <div className="form-group">
-        <label>Mensaje</label>
-
-        <textarea
-          value={mensaje}
-          onChange={(event) => setMensaje(event.target.value)}
-          maxLength={MAX_CHARS_MENSAJE}
-          rows={5}
-        />
-
-        <div className="char-counter">
-          <strong>
+        <div className="pagina-mensajes__grupo">
+          <label htmlFor="mensaje-texto">Mensaje</label>
+          <textarea
+            id="mensaje-texto"
+            value={mensaje}
+            onChange={(event) => setMensaje(event.target.value)}
+            maxLength={MAX_CHARS_MENSAJE}
+            rows={6}
+          />
+          <div className="pagina-mensajes__contador">
             {mensaje.length} / {MAX_CHARS_MENSAJE}
-          </strong>
+          </div>
         </div>
-      </div>
 
-      <button type="submit">Imprimir</button>
-    </form>
+        <div className="pagina-mensajes__acciones">
+          <button type="submit" className="boton-principal">
+            Imprimir
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
